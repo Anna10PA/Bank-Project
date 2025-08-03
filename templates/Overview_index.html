@@ -74,6 +74,20 @@
             </div>
         </div>
     </aside>
+    <div class="editCard">
+        <i class="fa-solid fa-xmark"></i>
+        <div class="enter-info">
+            <div class="input-01">
+                <label for="end">Target Amounts</label>
+                <input type="number" id="end" placeholder="$500000000000000000000" required min="0" max="500000000000000000000">
+            </div>
+            <div class="input-01">
+                <label for="start">Present Amounts</label>
+                <input type="number" id="start" placeholder="Write presents amounts here" min="0">
+            </div>
+        </div>
+        <button>Save</button>
+    </div>
     <main>
         <header>
             <div class="section01">
@@ -108,7 +122,7 @@
                         <div class="section-02">
                             <img src="../static/image/Mastercard-Logo 1.png" alt="" class="type">
                             <div class="div">
-                                <p>$25000</p>
+                                <p class="curent-money">$25000</p>
                                 <div class="arrow">
                                     <img src="../static/image/arrow-up-right.png" alt="">
                                 </div>
@@ -132,7 +146,7 @@
                     <div class="p1">
                         <div class="box">
                             <h3 id="sum">$20,000</h3>
-                            <img src="../static/image/Frame .png" alt="">
+                            <img src="../static/image/Frame .png" alt="" id="change">
                         </div>
                         <p class="data">May, 2023</p>
                     </div>
@@ -142,29 +156,27 @@
                                 <img src="../static/image/Award.png" alt="">
                                 <div class="txt-01-01">
                                     <p>Target Achieved</p>
-                                    <span>$12,500</span>
+                                    <span class="curent">$12,500</span>
                                 </div>
                             </div>
                             <div class="lil-div">
-                                <img src="../static/image/octicon_goal-16.png" alt="" id="change">
+                                <img src="../static/image/octicon_goal-16.png" alt="">
                                 <div class="txt-01-01">
                                     <p>This month Target</p>
-                                    <span>$20,000</span>
+                                    <span class="target">$20,000</span>
                                 </div>
                             </div>
                         </div>
                         <div class="big-div">
                             <div class="canva-info">
-                                <div class="canva">
-                                    <div class="blue"></div>
-                                </div>
                                 <div class="arrow-2">
                                     <div class="round-btn-2"></div>
                                     <div class="isari"></div>
                                 </div>
                                 <div class="progress">
-                                    <p>20 000</p>
-                                    <p>50 000</p>
+                                    <p class="price">$0</p>
+                                    <p class="curent type01"> curent</p>
+                                    <p class="target price type01">$50K</p>
                                 </div>
                             </div>
                             <p>Target vs Achievement</p>

@@ -457,27 +457,136 @@ header .fa-bell {
     color: #191919;
     font-weight: 500;
 }
-
+.progress {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width:100%
+}
 .round-btn-2 {
-    width:25px;
-    height:25px;
+    width:20px;
+    height:20px;
     background-color: #299D91;
     border-radius:50%;
     position:absolute;
     bottom:0;
 }
 
+.canva-info {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    height:120px
+}
+
 .isari {
-    height:120px;
+    height:90px;
     width:7px;
     background-color: #299D91;
-    transform: rotate(80deg);
+    transform: rotate(-90deg);
     transform-origin: bottom center;
     position:absolute;
     bottom:10px;
-    border-radius:60px 0px
+    left:7px;
+    border-radius:60px 0px;
+    transition: 0.8s ease-out
 }
 
 .arrow-2 {
     position:relative;
+    height:400px
+}
+.editCard {
+    max-width: 488px;
+    max-height: 400px;
+    background-color: white;
+    position:absolute;
+    transform: translate(-50%, -50%);
+    top:50%;
+    left:50%;
+    width:90%;
+    height:80%;
+    z-index:-2;
+    border-radius:16px;
+    padding: 64px 64px 48px 64px;
+    opacity: 0;
+    transition: 0.2s
+}
+
+.price {
+    color:#969696
+}
+
+#change {
+    cursor: pointer;
+}
+
+.enter-info {
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+    gap:30px;
+    width: 100%
+}
+
+.enter-info label {
+    color: #525256;
+    font-size:16px;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+}
+
+.input-01 {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    gap:10px
+}
+
+.editCard .fa-xmark {
+    font-size:1.9rem;
+    position: absolute;
+    right: 30px;
+    top:30px;
+    color: #525256;
+    cursor:pointer
+
+}
+
+.editCard button {
+    width: 192px;
+    height: 60px;
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+    background-color: #299D91;
+    border:none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s
+}
+
+.editCard button:hover {
+    transform:translateY(3px);
+    background-color:  #31b5a8;
+}
+
+.enter-info input {
+    width:100%;
+    padding:16px 24px;
+    font-size:16px;
+    border-radius:8px;
+    outline:none;
+    border:1px solid #D1D1D1;
+    color: #878787;
+    font-weight:400
+}
+
+.editCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap:30px
 }

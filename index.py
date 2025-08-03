@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
+from flask import jsonify
 import random
+from email.message import EmailMessage
 import ssl
 import smtplib
-from email.message import EmailMessage
 import os
 import json
 
@@ -30,13 +31,15 @@ def sign_up():
     password = request.form.get('password')
 
     try:
-        with open('all_user.txt', 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            for line in lines:
-                if line.strip().startswith("Email:") and email.lower() == line.strip().split("Email:")[1].strip().lower():
-                    return render_template('sign_up.html', text = 'This email is alredy registered')
-    except FileNotFoundError:
-        pass
+        with open('all_user.json', 'r', encoding='utf-8') as f:
+            users = json.load(f)
+            for user in users:
+                if user.get('email', '').lower() == email.lower():
+                    return render_template('sign_up.html', text='This email is already registered')
+                
+    except (FileNotFoundError, json.JSONDecodeError):
+        users = []
+
     
     code = ''
     for i in range(4):
@@ -107,7 +110,6 @@ def code():
 def log_in_page():
     return render_template('Log_in.html', title='FINEbank.IO - Log in')
 
-from flask import jsonify
 
 @app.route('/get_all_users')
 def get_users():
