@@ -12,6 +12,12 @@ app.secret_key = 'MyRandomKeyIDK2009'
 my_email = 'futureana735@gmail.com'
 my_password = 'zsru iwbh ryks sdxi'
 
+def handler(event, context):
+    return {
+        "statusCode": 200,
+        "headers": {"Content-Type": "application/json"},
+        "body": json.dumps({"message": "Hello from Python!"})
+    }
 
 @app.route('/')
 def main_page():
