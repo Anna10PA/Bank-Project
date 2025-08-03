@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+:root {
+    --bgColor: hsl(220, 16%, 96%);
+    --black: hsl(0, 0%, 5%);
+    --blue: #299D91;
+}
+
+body {
+    height:100vh;
+    background-color: var(--bgColor);
+    /* background-color: rgb(112, 68, 14); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:75px;
+    flex-direction: column;
+    text-align: center;
+    padding:10px
+}
+
+h2 {
+    font-size:40px;
+    color:var(--black);
+    line-height: 1.5;
+    letter-spacing: 2px;
+}
+h2 span{
+    font-weight: 400;
+}
+
+.text01 p {
+    font-size:24px;
+    line-height: 1.4;
+    opacity: 0.5;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.text01 {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    gap:30px
+}
+
+.border {
+    height:1.9px;
+    width:200px;
+    background-color: hsl(0, 0%, 53%);
+}
+
+.text02 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap:40px;
+}
+.text02 h3 {
+    font-size:32px;
+    font-weight:400;
+    color: hsl(240, 2%, 33%);
+    letter-spacing: 1px;
+}
+
+.mail {
+    background-color: var(--blue);
+    /* max-width:567px;
+    height:84px; */
+    border-radius:50px;
+    color:white;
+    padding:24px 64px;
+    height:84px;
+    font-size:32px;
+    font-weight:500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition:0.5s
+}
+
+.mail:hover {
+    transform: translateY(3px);
+    background-color: #31b5a8;
+}
+
+@media (max-width:620px) {
+    .mail {
+        font-size:20px;
+        height:40px;
+        display:flex;
+        align-items: center;
+        padding:0px 20px
+    }
+    .text02 h3{
+        font-size:25px
+    }
+}

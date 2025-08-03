@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% endif %}
+    <link rel="stylesheet" href="../static/Overview/style.css">
+    <script src="https://kit.fontawesome.com/b2005d7310.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <aside>
+        <div class="txt01">
+            <h2>
+                <span>FINE</span>bank<span>.IO</span>
+            </h2>
+            <nav>
+                <ul>
+                    <a href="../templates/Overview_index.html">
+                        <li class="curent-page">
+                            <img src="../static/image/Overview.png" alt=""> Overview
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <img src="../static/image/wallet.png" alt="">
+                            Balances
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <img src="../static/image/Transaction.png" alt="">
+                            Transactions
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <img src="../static/image/Expencces.png" alt="">
+                            Expenses
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <img src="../static/image/Goal.png" alt="">
+                            Goals
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <img src="../static/image/Settings.png" alt="">
+                            Settings
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+        <div class="txt02">
+            <div class="logout">
+                <img src="../static/image/Icon.png" alt="">
+                Logout
+            </div>
+            <div class="profile">
+                <div class="user">
+                    <img src="https://cdn-icons-png.flaticon.com/512/219/219983.png" alt="">
+                    <div class="user-name">
+                        <p class="name">{{ name }}</p>
+                        <span>View profile</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+        </div>
+    </aside>
+    <main>
+        <header>
+            <div class="section01">
+                <h1>Hello {{ name }}</h1>
+                <span> >> May 19, 2023</span>
+            </div>
+            <div class="section02">
+                <div class="alarm">
+                    <i class="fa-solid fa-bell"></i>
+                    <div class="round-btn"></div>
+                </div>
+                <div class="search">
+                    <input type="search" placeholder="Search here">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </header>
+        <section class="main">
+            <div class="card-type01">
+                <h2>Total Balance</h2>
+                <div class="card-info">
+                    <div class="p1">
+                        <h3 id="amount">$240,399</h3>
+                        <p>All Accounts</p>
+                    </div>
+                    <div class="card">
+                        <div class="txt-01">
+                            <p>Account Type</p>
+                            <h4>Credit Card</h4>
+                            <p>**** **** **** 2598</p>
+                        </div>
+                        <div class="section-02">
+                            <img src="../static/image/Mastercard-Logo 1.png" alt="" class="type">
+                            <div class="div">
+                                <p>$25000</p>
+                                <div class="arrow">
+                                    <img src="../static/image/arrow-up-right.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav">
+                        <p>< Previous</p>
+                            <div class="round">
+                                <div class="circle curent-circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                            </div>
+                        <p> Next ></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-type01">
+                <h2>Goals</h2>
+                <div class="card-info">
+                    <div class="p1">
+                        <div class="box">
+                            <h3 id="sum">$20,000</h3>
+                            <img src="../static/image/Frame .png" alt="">
+                        </div>
+                        <p class="data">May, 2023</p>
+                    </div>
+                    <div class="big">
+                        <div class="big-div">
+                            <div class="lil-div">
+                                <img src="../static/image/Award.png" alt="">
+                                <div class="txt-01-01">
+                                    <p>Target Achieved</p>
+                                    <span>$12,500</span>
+                                </div>
+                            </div>
+                            <div class="lil-div">
+                                <img src="../static/image/octicon_goal-16.png" alt="" id="change">
+                                <div class="txt-01-01">
+                                    <p>This month Target</p>
+                                    <span>$20,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="big-div">
+                            <div class="canva-info">
+                                <div class="canva">
+                                    <div class="blue"></div>
+                                </div>
+                                <div class="arrow-2">
+                                    <div class="round-btn-2"></div>
+                                    <div class="isari"></div>
+                                </div>
+                                <div class="progress">
+                                    <p>20 000</p>
+                                    <p>50 000</p>
+                                </div>
+                            </div>
+                            <p>Target vs Achievement</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <script src="../static/Overview/script.js"></script>
+</body>
+
+</html>

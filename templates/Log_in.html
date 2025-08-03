@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/Log in/style.css">
+    {% if title %}
+        <title> {{title}} </title>
+    {% endif %}
+</head>
+
+<body>
+    <div class="container">
+        <h2>
+            <span>FINE</span>bank<span>.IO</span>
+        </h2>
+        <form action='/log_in' method="POST">
+            <div class="cont">
+                <div class="email input">
+                    <input type="email" placeholder=" " id="mail" name="email">
+                    <label for="mail">Email Address</label>
+                </div>
+                <div class="password input">
+                    <a href="../Forgot Password/index.html">Forgot Password?</a>
+                    <input type="password" placeholder=" " id="password" name="password">
+                    <label for="password">Password</label>
+                </div>
+                {% if text %}
+                    <span id="message">{{ text }}</span>
+                {% endif %}
+                <div class="input2">
+                    <input type="checkbox" id="checkbox">
+                    <label for="checkbox">Keep me signed in</label>
+                </div>
+            </div>
+            <button>Login</button>
+        </form>
+        <div class="test">
+            <hr>
+            <p>or sing in with</p>
+        </div>
+        <div class="form02">
+            <div class="google">
+                <img src="../static/image/Google icon.png"alt="">
+                <p>Continue with Google</p>
+            </div>
+        </div>
+        <a href="" id="create">Create an accaunt</a>
+    </div>
+    <script src="../static/Log in/script.js"></script>
+</body>
+
+</html>

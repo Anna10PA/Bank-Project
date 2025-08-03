@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/sign up/style.css">
+    {% if title %}
+        <title>{{title}}</title>
+    {% else %}
+        <title>FINEbank.IO</title>
+    {% endif %}
+</head>
+
+<body>
+    <div class="container">
+        <div class="txt01">
+            <h2>
+                <span>FINE</span>bank<span>.IO</span>
+            </h2>
+            <h3>Create an account</h3>
+        </div>
+        <form method="POST" action="/sign_up">
+            <div class="main">
+                <div class="cont">
+                    <div class="name input">
+                        <input type="text" placeholder=" " id="name" name="name">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="email input">
+                        <input type="email" id="email" placeholder=" " name="email">
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="password input">
+                        <input type="password" placeholder=" " id="password" name="password">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                {% if text %}
+                    <span>{{ text }}</span>
+                {% endif %}
+            </div>
+
+            <p class="p1">By continuing, you agree to our <a href="#"> terms of service.</a></p>
+            <button>Sing up</button>
+        </form>
+        <div class="test">
+            <hr>
+            <p>or sign up with</p>
+        </div>
+        <div class="google">
+            <img src="../static/image/Google icon.png" alt="">
+            <p>Continue with Google</p>
+        </div>
+        <p class="p2">Already have an account? <a href="{{ url_for('log_in') }}" id="create" class="sign_in">Sign in here</a></p>
+    </div>
+    <script src="../static/sign up/script.js"></script>
+</body>
+
+</html>

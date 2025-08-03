@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/code/style.css">
+    {% if title %}
+    <title> {{title}} </title>
+    {% endif %}
+</head>
+
+<body>
+    <div class="txt01">
+        <h2>
+            <span>FINE</span>bank<span>.IO</span>
+        </h2>
+        <h3>Verification</h3>
+    </div>
+    <form method="POST" action="/code">
+        <input type="number" name="code" min="0" maxlength="4" required />
+        <button type="submit">Send</button>
+    </form>
+    <span> </span>
+    <a href="">Sign up</a>
+</body>
+
+</html>
