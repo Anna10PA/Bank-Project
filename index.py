@@ -1,58 +1,68 @@
-from flask import Flask, render_template, request, session, redirect, url_for, flash
-from flask import jsonify
-import random
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from email.message import EmailMessage
+import random
 import ssl
 import smtplib
 import os
 import json
 
 app = Flask(__name__)
-app.secret_key = 'MyRandomKeyIDK2009' 
+app.secret_key = 'MyRandomKeyIDK2009'
 
 my_email = 'futureana735@gmail.com'
-my_password = 'zsru iwbh ryks sdxi'
+my_password = 'uarl rquc eyvp ynwr'
 
-def handler(event, context):
-    return {
-        "statusCode": 200,
-        "headers": {"Content-Type": "application/json"},
-        "body": json.dumps({"message": "Hello from Python!"})
-    }
 
+# Task 001 - საწყისი გვერდი | რეგისტრაციის ჩატვირთვა
 @app.route('/')
 def main_page():
-    return render_template('sign_up.html', title = 'FINEbank.IO - Sign up')
+    return render_template('sign_up.html', title='FINEbank.IO - Sign up')
 
+
+# Task 002   -   რეგისტრაციის ფუნქციის გაშვება
 @app.route('/sign_up', methods=['POST'])
 def sign_up():
     name = request.form.get('name')
     email = request.form.get('email')
     password = request.form.get('password')
 
+    users = []
     try:
-        with open('all_user.json', 'r', encoding='utf-8') as f:
-            users = json.load(f)
+        with open('all_user.json', 'r', encoding='utf-8') as allUserFile:
+            users = json.load(allUserFile)
+
+            # Task 002-01   -   არის თუ არა მეილი რეგისტრირებული
+            duplicate_email = False
             for user in users:
-                if user.get('email', '').lower() == email.lower():
-                    return render_template('sign_up.html', text='This email is already registered')
-                
+                if 'email' in user and user['email'].lower() == email.lower():
+                    duplicate_email = True
+                    break
+
+            if duplicate_email:
+                return render_template('sign_up.html', text='This email is already registered')
+
     except (FileNotFoundError, json.JSONDecodeError):
         users = []
 
-    
+    # Task 002-02   -  სავერიფიკაციო კოდის შედგენა   
     code = ''
     for i in range(4):
         code += random.choice('0123456789')
 
+    
+    # Task 002-03   -  მეილზე გაგზზავნა
     session['code'] = code
     session['email'] = email
-    session['name'] = name  
+    session['name'] = name
     session['password'] = password
 
+    subject = 'FINEbank.IO - Verification'
+    body = f"""
+    Hello {name}!
+    Your verification code is: {code}
 
-    subject = f'Hello {name}!'
-    body = f"Your verification code is: {code}"
+    - - - FINEbank.IO - - - 
+    """
 
     em = EmailMessage()
     em['From'] = my_email
@@ -60,16 +70,15 @@ def sign_up():
     em['Subject'] = subject
     em.set_content(body)
 
-    context = ssl.create_default_context()
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(my_email, my_password)
         smtp.send_message(em)
 
-    return render_template('code.html', title = 'FINEbank.IO - Verification')
+    return render_template('code.html', title='FINEbank.IO - Verification')
 
 
+# Task 003   -   კოდის შემოწმება და საბოლოოდ რეგისტრაცია
 @app.route('/code', methods=['GET', 'POST'])
-
 def code():
     if request.method == 'POST':
         user_code = request.form.get('code')
@@ -86,56 +95,48 @@ def code():
             }
 
             users = []
-            json_file = 'all_user.json'
-
-            if os.path.exists(json_file):
-                with open(json_file, 'r', encoding='utf-8') as f:
+            if os.path.exists('all_user.json'):
+                with open('all_user.json', 'r', encoding='utf-8') as file:
                     try:
-                        users = json.load(f)
+                        users = json.load(file)
                     except json.JSONDecodeError:
                         users = []
 
             users.append(user_data)
 
-            with open(json_file, 'w', encoding='utf-8') as f:
-                json.dump(users, f, indent=4, ensure_ascii=False)
+            with open('all_user.json', 'w', encoding='utf-8') as userFile:
+                json.dump(users, userFile, indent=6)
 
             return render_template('Log_in.html', title='FINEbank.IO - Log in')
-
         else:
             return render_template('code.html', title='FINEbank.IO - Verification')
-        
 
+    return render_template('code.html', title='FINEbank.IO - Verification')
+
+
+# Task 004-01   -   მონაცემის მიღება მომხმარებელთან + საიტის ჩატვირთვა
 @app.route('/log_in', methods=['GET'])
 def log_in_page():
     return render_template('Log_in.html', title='FINEbank.IO - Log in')
 
 
-@app.route('/get_all_users')
-def get_users():
-    try:
-        with open('all_user.json', 'r', encoding='utf-8') as f:
-            users = json.load(f)
-            return jsonify(users)
-    except:
-        return jsonify([])
-
+# ask 004-01   -   მონაცემის მიღება მომხმარებლისგან + შემოწმება თუ არსებობს ესეთი მომხმარებელი
 @app.route('/log_in', methods=['POST'])
 def log_in():
     input_email = request.form.get('email')
     input_password = request.form.get('password')
 
     try:
-        with open('all_user.json', 'r', encoding='utf-8') as f:
-            users = json.load(f)
+        with open('all_user.json', 'r', encoding='utf-8') as file:
+            users = json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         return render_template('Log_in.html', text='User not found')
 
     for user in users:
-        if user.get('email', '').lower() == input_email.lower():
+        if user['email'].lower() == input_email.lower():
             if user.get('password') == input_password:
                 session['email'] = input_email
-                session['name'] = user.get('name')
+                session['name'] = user['name']
                 return redirect(url_for('overview'))
             else:
                 return render_template('Log_in.html', text='Incorrect password')
@@ -143,10 +144,72 @@ def log_in():
     return render_template('Log_in.html', text='User not found')
 
 
+# Task 006 - პაროლის გაგზავნა მეილზე
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        try:
+            with open('all_user.json', 'r', encoding='utf-8') as file:
+                users = json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return render_template('Forgot_password.html', text='User database error.')
+
+        user = None
+        for u in users:
+            if u['email'].lower() == email.lower():
+                user = u
+                break
+
+        if not user:
+            return render_template('Forgot_password.html', text='Email not found.')
+
+        subject = 'FINEbank.IO - Your Password'
+        body = f"""
+        Hello {user['name']},
+
+        As requested, here is your current password: {user['password']}
+
+        Please keep it safe and do not share it with anyone.
+
+        - - - FINEbank.IO - - -
+        """
+
+        em = EmailMessage()
+        em['From'] = my_email
+        em['To'] = email
+        em['Subject'] = subject
+        em.set_content(body)
+
+        try:
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+                smtp.login(my_email, my_password)
+                smtp.send_message(em)
+        except smtplib.SMTPAuthenticationError:
+            return render_template('Forgot_password.html')
+
+        return render_template('Log_in.html', text='Password sent to your email.')
+
+    return render_template('Forgot_password.html')
+
+
+# Task 006 - ყველა მომხმარებლის გადაქცევა ჯსონ ფაილად
+@app.route('/get_all_users')
+def get_users():
+    try:
+        with open('all_user.json', 'r', encoding='utf-8') as file:
+            users = json.load(file)
+            return jsonify(users)
+    except:
+        return jsonify([])
+
+
+# Task 007-01   -   overview გვერდის გაშვება
 @app.route('/overview')
 def overview():
-    return render_template('Overview_index.html', title='FINEbank.IO - Overview', name = session.get('name'))
+    return render_template('Overview_index.html', title='FINEbank.IO - Overview', name=session.get('name'))
 
 
+# Finish :D   -   კოდის გაშვება
 if __name__ == '__main__':
     app.run(debug=True)

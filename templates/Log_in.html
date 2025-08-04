@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/Log in/style.css">
     {% if title %}
-        <title> {{title}} </title>
+    <title> {{title}} </title>
     {% endif %}
 </head>
 
@@ -22,12 +22,12 @@
                     <label for="mail">Email Address</label>
                 </div>
                 <div class="password input">
-                    <a href="../Forgot Password/index.html">Forgot Password?</a>
+                    <a href="/forgot_password">Forgot Password?</a>
                     <input type="password" placeholder=" " id="password" name="password">
                     <label for="password">Password</label>
                 </div>
                 {% if text %}
-                    <span id="message">{{ text }}</span>
+                <span id="message">{{ text }}</span>
                 {% endif %}
                 <div class="input2">
                     <input type="checkbox" id="checkbox">
@@ -42,11 +42,11 @@
         </div>
         <div class="form02">
             <div class="google">
-                <img src="../static/image/Google icon.png"alt="">
+                <img src="../static/image/Google icon.png" alt="">
                 <p>Continue with Google</p>
             </div>
         </div>
-        <a href="" id="create">Create an accaunt</a>
+        <a href="{{ url_for('main_page') }}" id="create">Create an account</a>
     </div>
     <script src="../static/Log in/script.js"></script>
 </body>
