@@ -204,10 +204,21 @@ def get_users():
         return jsonify([])
 
 
-# Task 007-01   -   overview გვერდის გაშვება
+# Task 007    -    გვერდების გაშვება
+
 @app.route('/overview')
 def overview():
     return render_template('Overview_index.html', title='FINEbank.IO - Overview', name=session.get('name'))
+
+@app.route('/goal')
+def goal():
+    return render_template('Goal.html', title='FINEbank.IO - Goal', name=session.get('name'))
+
+
+@app.route('/Balances')
+def Balances():
+    return render_template('Balance.html', title='FINEbank.IO - Balance', name=session.get('name'))
+
 
 
 # Finish :D   -   კოდის გაშვება
