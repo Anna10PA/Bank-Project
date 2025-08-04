@@ -169,7 +169,6 @@ def forgot_password():
         Hello {user['name']},
 
         As requested, here is your current password: {user['password']}
-
         Please keep it safe and do not share it with anyone.
 
         - - - FINEbank.IO - - -
