@@ -20,6 +20,7 @@ body {
 input {
     font-size: 1.2rem;
     padding: 20px;
+    outline:none;
     height: 50px;
     width: 100%;
     max-width: 500px;
@@ -67,6 +68,14 @@ h3 {
     font-family: "Inter", sans-serif;
 }
 
+
+#aTag {
+    margin-top:30px;
+    text-decoration: none;
+    color:#686868;
+    font-size:20px;
+    font-weight:700
+}
 .txt01 {
     text-align: center;
     display:flex;
