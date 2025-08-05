@@ -1,0 +1,21 @@
+[
+      {
+            "name": "Ana",
+            "email": "puturidzeana0210@gmail.com",
+            "password": "Ana200910",
+            "cards": {
+                  "card-01": {
+                        "number": "3993 1606 2929 8414",
+                        "accaunt_number": "GE42IO0000000273495906",
+                        "money": 10000,
+                        "type": "mastercard",
+                        "code": "7049"
+                  }
+            },
+            "profile": "https://cdn-icons-png.flaticon.com/512/219/219983.png",
+            "goal": {
+                  "target": 50000,
+                  "curent": 10000
+            }
+      }
+]

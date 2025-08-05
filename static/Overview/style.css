@@ -20,11 +20,13 @@ body {
     height: 100vh;
     background-color: var(--bgColor);
     display: flex;
+    /* overflow: hidden; */
 }
 
 main {
     width: 100%;
     background-color: var(--bgColor);
+    height: 90vh;
 }
 
 header {
@@ -262,8 +264,6 @@ header .fa-bell {
 
 /* cardebis gastilva */
 .card-type01 {
-    padding: 24px;
-    max-height:250px;
     height:100%
 }
 
@@ -277,9 +277,10 @@ header .fa-bell {
 .card-info {
     background-color: white;
     border-radius: 8px;
-    padding: 20px 24px;
+    padding: 25px 24px;
     box-shadow: 5px 10px 30px #e1e1e1;
     font-family: "Inter", sans-serif;
+    height:266px
 }
 
 #amount,
@@ -300,9 +301,13 @@ header .fa-bell {
     display:flex;
     flex-direction: column;
     align-items: center;
-    gap:30px;
+    gap:15px;
     height: 100%;
     justify-content: space-between;
+}
+
+.div2 {
+    gap:25px
 }
 .lil-div {
     display: flex;
@@ -312,7 +317,7 @@ header .fa-bell {
 
 .txt-01-01 p {
     color: #878787;
-    font-size: 12px
+    font-size: 14px
 }
 
 .txt-01-01 span {
@@ -334,6 +339,7 @@ header .fa-bell {
 }
 
 .card {
+    margin-top:17px;
     background-color: #299D91;
     border-radius: 4px;
     padding: 16px;
@@ -342,6 +348,7 @@ header .fa-bell {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height:110px;
     /* height:100% */
 }
 
@@ -410,6 +417,9 @@ header .fa-bell {
     padding: 20px 32px 20px 24px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(352px, 1fr));
+    grid-auto-rows: 1fr; 
+    gap: 24px;
+    height:100%;
 }
 
 .nav {
@@ -417,7 +427,42 @@ header .fa-bell {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px
+    margin-top: 22px
+}
+
+#div02 {
+    display:flex;
+    opacity: 1;
+    z-index:2;
+    max-width:500px;
+    padding:40px 10px;
+    margin:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:80%;
+    justify-content: space-between;
+    height:100%;
+    gap:40px
+}
+
+.infos p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    gap:20px;
+    line-height: 2;
+    font-size:17px;
+    font-weight: 600;
+    color:#191919;
+    border-bottom:1px solid rgb(215, 215, 215);
+    padding:2px 0
+}
+
+.infos p span {
+    font-weight:500;
+    color:#525256
 }
 
 .nav p {
@@ -456,6 +501,7 @@ header .fa-bell {
 .big-div {
     color: #191919;
     font-weight: 500;
+
 }
 .progress {
     display:flex;
@@ -464,12 +510,13 @@ header .fa-bell {
     width:100%
 }
 .round-btn-2 {
-    width:20px;
-    height:20px;
+    width:15px;
+    height:15px;
     background-color: #299D91;
     border-radius:50%;
     position:absolute;
     bottom:0;
+    left:-8px
 }
 
 .canva-info {
@@ -477,18 +524,18 @@ header .fa-bell {
     flex-direction: column;
     align-items: center;
     width:100%;
-    height:120px
+    height:120px;
 }
 
 .isari {
-    height:90px;
-    width:7px;
+    height:70px;
+    width:5px;
     background-color: #299D91;
     transform: rotate(-90deg);
     transform-origin: bottom center;
     position:absolute;
     bottom:10px;
-    left:7px;
+    left:-3px;
     border-radius:60px 0px;
     transition: 0.8s ease-out
 }
@@ -515,7 +562,8 @@ header .fa-bell {
 }
 
 .price {
-    color:#969696
+    color:#969696;
+    font-size:0.9rem
 }
 
 #change {
@@ -526,8 +574,13 @@ header .fa-bell {
     display:flex;
     flex-direction: column;
     align-items: start;
-    gap:30px;
+    gap:20px;
     width: 100%
+}
+
+.curent {
+    font-size:1.2rem;
+    font-weight:700
 }
 
 .enter-info label {
@@ -589,4 +642,169 @@ header .fa-bell {
     align-items: center;
     width: 100%;
     gap:30px
+}
+
+.information {
+    background-color: white;
+    padding:16px 24px 34px 24px;
+    height:100%;
+}
+
+.information ul {
+    list-style: none;
+}
+
+.information nav {
+    width:60%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #525256
+}
+.information nav ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.information ul li {
+    cursor: pointer;
+}
+.curent_page {
+    border-bottom:2px solid #299D91;
+    width:30px;
+    color:#299D91
+}
+.type02 {
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-01 {
+    display:flex;
+    width: 100%;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.header-01 span {
+    font-size:1.5rem;
+    font-weight: 500;
+}
+
+.header-01 a {
+    text-decoration: none;
+    color:#878787;
+    cursor:pointer;
+    display:flex;
+    align-items: center;
+    gap:10px
+}
+
+.card-type03 {
+    grid-column: span 2 ;
+    height:100%
+}
+
+.detail-info ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom:1px solid rgb(234, 234, 234);
+    padding-bottom:20px;
+    width:100%;
+    max-width:70vh
+}
+
+.detail-info ul {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    gap:15px
+}
+
+.detail-info {
+    height:100%;
+    overflow: auto;
+    margin-top:30px
+}
+
+::-webkit-scrollbar {
+    width:0
+}
+
+.txt {
+    display:flex;
+    flex-direction:column;
+    align-items: start;
+    gap:0px;
+    line-height: 0.8;
+}
+
+.txt h2 {
+    font-size:16px;
+    color:#191919;
+    font-weight:700
+}
+
+.txt p {
+    color: #9F9F9F;
+    font-size:12px
+}
+
+.money h2 {
+    color:#525256;
+    font-size:16px;
+    font-weight:600
+}
+
+.conti {
+    display:flex;
+    align-items: center;
+    gap:15px;
+}
+
+.money p {
+    color: #9F9F9F;
+    font-size:12px
+}
+
+.money {
+    display:flex;
+    flex-direction: column;
+    align-items: end;
+    gap:0px;
+    line-height:0.9
+}
+
+.transactions {
+    display: flex;
+    width:90%;
+    justify-content: space-around;
+    padding-bottom:30px
+}
+
+.transactions i {
+    font-size:1.5rem;
+    color:white;
+}
+
+.wre {
+    width:50px;
+    height:50px;
+    background-color: #299D91;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.div03 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:5px;
 }
