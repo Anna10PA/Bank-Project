@@ -5,6 +5,7 @@ import smtplib
 from email.message import EmailMessage
 import os
 import json
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'MyRandomKeyIDK2009'
@@ -134,6 +135,16 @@ def code():
             Account_number = session.get('Account_number')
             card_code = session.get('card_code')
 
+
+            if email.lower() != 'futureana735@gmail.com':
+                money = 10000
+            else:
+                money = 100000
+
+            
+            time = datetime.now()
+            curent_time = time.strftime("%d/%m/%Y")
+
             user_data = {
                 "name": name,
                 "email": email,
@@ -142,15 +153,40 @@ def code():
                     'card-01': {
                         'number': card_number[:-1],
                         'accaunt_number': Account_number,
-                        'money': 10000,
+                        'money': money,
                         'type': 'mastercard',
                         'code': card_code
                     }
                 },
                 "profile": 'https://cdn-icons-png.flaticon.com/512/219/219983.png',
                 "goal": {
-                    'target': 50000,
-                    'curent': 10000
+                    'target': money * 3,
+                    'curent': money
+                },
+                "notification": {
+                    'read': False,
+                    'message': {
+                        curent_time: [
+                            f"Congratulations! You've received ${money} from the FINEbank.IO for signing up!"
+                        ]
+                    }
+                },
+                'transactions': {
+                    'revenue': {
+                        'FINEbank.IO': {
+                            'send_money': money,
+                            'reason': 'registration'
+                        }
+                    },
+                    'expenses': {
+
+                    },
+                    'all': {
+                        'FINEbank.IO': {
+                            'send_money': money,
+                            'reason': 'registration'
+                        }
+                    }
                 }
             }
 
@@ -189,20 +225,28 @@ def log_in():
     try:
         with open('all_user.json', 'r', encoding='utf-8') as file:
             users = json.load(file)
+
+        if not users:
+            users = []
+
     except (FileNotFoundError, json.JSONDecodeError):
-        return render_template('Log_in.html', text='User not found')
+        return render_template('Log_in.html', text='User database error or file not found')
 
     for user in users:
-        if user['email'].lower() == input_email.lower():
-            if user['password'] == input_password:
-                session['email'] = input_email
-                session['name'] = user['name']
-                session['curent_user'] = user
-                return redirect(url_for('overview'))
-            else:
-                return render_template('Log_in.html', text='Incorrect password')
+        try:
+            if user['email'].lower() == input_email.lower():
+                if user['password'] == input_password:
+                    session['email'] = input_email
+                    session['name'] = user['name']
+                    session['curent_user'] = user
+                    return redirect(url_for('overview'))
+                else:
+                    return render_template('Log_in.html', text='Incorrect password')
+        except (KeyError, AttributeError, TypeError):
+            continue 
 
     return render_template('Log_in.html', text='User not found')
+
 
 
 # Task 006 - პაროლის გაგზავნა მეილზე
@@ -253,6 +297,14 @@ def forgot_password():
     return render_template('Forgot_password.html')
 
 
+
+# curent user
+
+@app.route('/curent_user')
+def curent_user():
+    user = session['curent_user']
+    return jsonify(user)
+
 # Task 006 - ყველა მომხმარებლის გადაქცევა ჯსონ ფაილად
 @app.route('/get_all_users')
 def get_users():
@@ -262,7 +314,6 @@ def get_users():
             return jsonify(users)
     except:
         return jsonify([])
-
 
 # Task 007 - 01   -  საწყისი გვერდი გვერდების გაშვება
 
@@ -280,35 +331,32 @@ def overview():
 
 
 #  მონაცემის განახლება (ანუ მიზნად როა თუ რაცხა იმის)
-@app.route('/update_goal', methods=['POST'])
-def update_goal():
-    try:
-        data = request.json
-        target = data.get('target')
-        curent = data.get('curent')
-        email = session.get('email')
+@app.route('/read_notification', methods=["GET", "POST"])
+def read_status():
+    if request.method == "POST":
+        try:
+            email = session['email']
+            if not email:
+                return 'error'
 
-        if not email:
-            return 'Error'
+            with open('all_user.json', 'r', encoding='utf-8') as file:
+                users = json.load(file)
 
-        with open('all_user.json', 'r', encoding='utf-8') as file:
-            users = json.load(file)
+            for user in users:
+                if user['email'].lower() == email.lower():
+                    user['notification']['read'] = True
+                    session['curent_user'] = user
+                    break
 
-        for user in users:
-            if user['email'].lower() == email.lower():
-                user['goal']['target'] = target
-                user['goal']['curent'] = curent
-                session['curent_user'] = user  
-                break
+            with open('all_user.json', 'w', encoding='utf-8') as file:
+                json.dump(users, file, indent=4)
 
-        with open('all_user.json', 'w', encoding='utf-8') as file:
-            json.dump(users, file, indent=4)
-
-        return 'Done'
-    
-    except Exception as error:
-        return jsonify({'success': False, 'error': str(error)}), 500
-    
+            return 'good'
+        except Exception as error:
+            return error
+    else:
+        user_read_status = session['curent_user']['notification']
+        return jsonify(user_read_status)
 
 
 # ჯს-ში წაღება
@@ -320,6 +368,34 @@ def get_goal():
 
 
 
+@app.route('/update_goal', methods=['POST'])
+def update_goal():
+    data = request.get_json()
+
+    target = data.get('target')
+    current = data.get('curent') 
+
+    email = session.get('email')
+
+    try:
+        with open('all_user.json', 'r', encoding='utf-8') as file:
+            users = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        users = []
+
+    for user in users:
+        if user['email'].lower() == email.lower():
+            user['goal'] = {'target': target, 
+                            'curent': current}
+            session['curent_user'] = user 
+            break
+
+    with open('all_user.json', 'w', encoding='utf-8') as file:
+        json.dump(users, file, indent=4)
+
+    return jsonify([])
+
+
 @app.route('/goal')
 def goal():
     return render_template('Goal.html', title='FINEbank.IO - Goal', name=session.get('name'))
@@ -329,7 +405,10 @@ def goal():
 def Balances():
     return render_template('Balance.html', title='FINEbank.IO - Balance', name=session.get('name'))
 
-
+@app.route('/log_out')
+def log_out():
+    session.clear()
+    return render_template('log_in.html', title='FINEbank.IO - Log in')
 
 # Finish :D   -   კოდის გაშვება
 if __name__ == '__main__':

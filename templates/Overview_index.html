@@ -58,7 +58,7 @@
             </nav>
         </div>
         <div class="txt02">
-            <a href="">
+            <a href="/log_out">
                 <div class="logout">
                     <img src="../static/image/Icon.png" alt="">
                     Logout
@@ -93,8 +93,8 @@
         </div>
         <button>Save</button>
     </div>
-    <div class="editCard" id="div02">
-        <i class="fa-solid fa-xmark"></i>
+    <div id="div02">
+        <i class="fa-solid fa-xmark" id="second"></i>
         <h2>Card details</h2>
         <div class="infos">
             <p>
@@ -109,7 +109,7 @@
                 </span>
             </p>
             <p>
-                Account number:
+                Account:
                 <span>
                     {{ userinfo.cards['card-01'].accaunt_number }}
                 </span>
@@ -150,6 +150,11 @@
             </div>
         </div>
     </div>
+    <div id="transaction-div">
+        <ul id="list">
+            
+        </ul>
+    </div>
     <main>
         <header>
             <div class="section01">
@@ -159,7 +164,9 @@
             <div class="section02">
                 <div class="alarm">
                     <i class="fa-solid fa-bell"></i>
+                    {% if not userinfo.notification.read %}
                     <div class="round-btn"></div>
+                    {% endif %}
                 </div>
                 <div class="search">
                     <input type="search" placeholder="Search here">
@@ -259,13 +266,13 @@
                 <div class="information card-info">
                     <nav>
                         <ul>
-                            <li class="curent_page">All</li>
-                            <li>Revenue</li>
-                            <li>Expenses</li>
+                            <li class="curent_page" id="All">All</li>
+                            <li id="Revenue">Revenue</li>
+                            <li id="Expenses">Expenses</li>
                         </ul>
                     </nav>
                     <div class="detail-info">
-                        <ul>
+                        <ul class="transaction-story">
                             <li>
                                 <div class="conti">
                                     <img src="../static/image/game.png" alt="">

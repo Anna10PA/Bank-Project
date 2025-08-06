@@ -12,6 +12,7 @@ let sasurveliTanxa = '$1000'
 let change = document.querySelector('#change')
 let div = document.querySelector('.editCard')
 let cross = document.querySelector('.fa-xmark')
+let cross02 = document.querySelector('#second')
 let save = div.querySelector('button')
 let isari = document.querySelector('.isari')
 let target = document.querySelectorAll('.target')
@@ -22,6 +23,11 @@ let card = document.querySelector('.card')
 let mon = document.querySelectorAll('.type01')
 let cardInfo = document.querySelector('#arrow')
 let div02 = document.querySelector('#div02')
+let list = document.querySelector('#list')
+let alarm = document.querySelector('.alarm')
+let transactionDiv = document.querySelector('#transaction-div')
+let transactionStoryDiv = document.querySelector('.transaction-story')
+
 
 change.addEventListener('click', () => {
     div.style.zIndex = '2'
@@ -49,42 +55,114 @@ numberView()
 card.addEventListener('click', numberView)
 
 
+let is_open = false
+cardInfo.addEventListener('click', () => {
+    is_open = !is_open
+    if (is_open) {
+        div02.style.opacity = '1'
+        div02.style.zIndex = '3'
+    }
+})
+
+cross02.addEventListener('click', () => {
+    is_open = !is_open
+    if (!is_open) {
+        div02.style.opacity = '0'
+        div02.style.zIndex = '-3'
+    }
+})
+
 save.addEventListener('click', async () => {
-    let targetMoney = Number(div.querySelector('input').value)
-    let curentMoney = Number(div.querySelectorAll('input')[1].value)
+    let targetMoney = Number(div.querySelector('input').value);
+    let curentMoney = Number(div.querySelectorAll('input')[1].value);
 
-    div.style.zIndex = '2'
-    div.style.opacity = '1'
     if (!targetMoney || !curentMoney || targetMoney <= curentMoney) {
-        alert('Not correct info')
-        div.style.zIndex = '-2'
-        div.style.opacity = '0'
-    } else {
+        alert('Not correct info');
+        div.style.zIndex = '-2';
+        div.style.opacity = '0';
+        return;
+    }
 
-        for (let i of target) {
-            i.textContent = targetMoney
+    try {
+        const response = await fetch('/update_goal', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ target: targetMoney, curent: curentMoney })
+        });
+
+        if (!response.ok) {
+            alert('Failed to update goal on server.');
+            return;
         }
 
-        for (let i of curentM) {
+        const data = await response.json();
+        console.log('Update response data:', data);
+
+        // განახლე UI მხოლოდ წარმატებული შენახვის შემდეგ
+        for (let i of target) i.textContent = targetMoney;
+        for (let i of curentM) i.textContent = curentMoney;
+
+        function formatMoney(amount) {
+            const units = ['', 'K', 'M', 'B', 'T'];
+            let unitIndex = 0;
+            while (amount >= 1000 && unitIndex < units.length - 1) {
+                amount /= 1000;
+                unitIndex++;
+            }
+            return `${Math.floor(amount)}${units[unitIndex]}`;
+        }
+
+        document.querySelectorAll('.type01')[0].textContent = formatMoney(curentMoney);
+        document.querySelectorAll('.type01')[1].textContent = formatMoney(targetMoney);
+
+        div.style.opacity = '0';
+        div.style.zIndex = '-2';
+
+    } catch (error) {
+        alert('Error communicating with server.');
+        console.error(error);
+    }
+    window.location.reload()
+})
+
+async function getGoal() {
+    try {
+        let url = await fetch('/get_goal')
+        let info = await url.json()
+        console.log(info)
+
+        let targetMoney = info.target
+        let curentMoney = info.curent
+
+        let percentage = (curentMoney / targetMoney) * 100
+        isari.style.transform = `rotate(${(percentage * 1.8) - 90}deg)`
+
+        // 
+        for (let i of document.querySelectorAll('.target')) {
+            i.textContent = targetMoney
+        }
+        for (let i of document.querySelectorAll('.curent')) {
             i.textContent = curentMoney
         }
 
-        let count = 0
-        let str = String(curentMoney)
-        let formatted = str
 
-        let count1 = 0
-        let str1 = String(curentMoney)
-        let formatted01 = str1
+        function formatMoney(amount) {
+            const units = ['', 'K', 'M', 'B', 'T']
+            let unitIndex = 0
 
-        while (formatted.length > 3) {
-            formatted = formatted.slice(0, -3)
-            count++
+            while (amount >= 1000 && unitIndex < units.length - 1) {
+                amount = amount / 1000
+                unitIndex++
+            }
+
+            return `${Math.floor(amount)}${units[unitIndex]}`
         }
-        while (formatted01.length > 3) {
-            formatted01 = formatted01.slice(0, -3)
-            count1++
-        }
+
+        document.querySelectorAll('.type01')[0].textContent = formatMoney(curentMoney)
+        document.querySelectorAll('.type01')[1].textContent = formatMoney(targetMoney)
+
+        percentage = (curentMoney / targetMoney) * 100
+        isari.style.transform = `rotate(${(percentage * 1.8) - 90}deg)`
 
         fetch('/update_goal', {
             method: 'POST',
@@ -96,79 +174,82 @@ save.addEventListener('click', async () => {
                 curent: curentMoney
             })
         })
-        
-        function formatMoney(amount) {
-            const units = ['', 'K', 'M', 'B', 'T']
-            let unitIndex = 0
-
-            while (amount >= 1000 && unitIndex < units.length - 1) {
-                amount = amount / 1000
-                unitIndex++
-            }
-
-            return `${Math.floor(amount)}${units[unitIndex]}`
-        }
-
-        document.querySelectorAll('.type01')[0].textContent = formatMoney(curentMoney)
-        document.querySelectorAll('.type01')[1].textContent = formatMoney(targetMoney)
-
-
-        div.style.opacity = '0'
-        div.style.zIndex = '-2'
-        window.location.reload()
-    }
-
-})
-
-
-
-async function getGoal() {
-    try {
-        let url = await fetch('/get_goal')
-        let info = await url.json()
-        console.log(info)
-
-        let targetMoney = info.target   
-        let curentMoney = info.curent
-
-        // მიზნის და მიმდინარე თანხის პირდაპირი ჩასმა
-        for (let i of document.querySelectorAll('.target')) {
-            i.textContent = targetMoney
-        }
-        for (let i of document.querySelectorAll('.curent')) {
-            i.textContent = curentMoney
-        }
-        
-        
-        function formatMoney(amount) {
-            const units = ['', 'K', 'M', 'B', 'T']
-            let unitIndex = 0
-            
-            while (amount >= 1000 && unitIndex < units.length - 1) {
-                amount = amount / 1000
-                unitIndex++
-            }
-            
-            return `${Math.floor(amount)}${units[unitIndex]}`
-        }
-        
-        document.querySelectorAll('.type01')[0].textContent = formatMoney(curentMoney)
-        document.querySelectorAll('.type01')[1].textContent = formatMoney(targetMoney)
-
-        let percentage = Math.min((curentMoney / targetMoney) * 100, 100)
-        isari.style.transform = `rotate(${(percentage * 1.8) - 90}deg)`
-        
-        
-        
     } catch (error) {
         console.error('Failed to load goal data', error)
     }
-    
+
+
 }
 
 getGoal()
 
 
-cardInfo.addEventListener('click', ()=> {
+// render notification
+async function renderNotifications() {
+    try {
+        let url = await fetch('/curent_user')
+        let info = await url.json()
 
-})
+        let message = info.notification.message
+        let isRead = info.notification.read
+
+
+        for (let date in message) {
+            let li = document.createElement('li')
+            let txt = document.createElement('p')
+            let time = document.createElement('span')
+
+            txt.textContent = message[date]
+            time.textContent = date
+
+            li.appendChild(txt)
+            li.appendChild(time)
+            list.appendChild(li)
+
+            // notification open
+            let is_open_notification = false
+            alarm.addEventListener('click', () => {
+                is_open_notification = !is_open_notification
+                if (is_open_notification) {
+                    transactionDiv.style.transform = 'translateY(0px)'
+                    transactionDiv.style.zIndex = '1'
+                    transactionDiv.style.opacity = '1'
+
+                    fetch('/read_notification', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            read: true
+                        })
+                    })
+                } else {
+                    transactionDiv.style.transform = 'translateY(-500px)'
+                    transactionDiv.style.zIndex = '-3'
+                    transactionDiv.style.opacity = '0'
+                    window.location.reload()
+                }
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+renderNotifications()
+
+
+async function transactionStory( url_name) {
+    let url = await fetch('/curent_user')
+    let data = await url.json()
+    let curent_info = data.transactions[url_name]
+
+    console.log(curent_info)
+    transactionStoryDiv.innerHTML = ''
+
+    for (let key of curent_info) {
+        console.log(curent_info[key])
+    }
+}
+
+transactionStory('all')
