@@ -20,13 +20,13 @@ body {
     height: 100vh;
     background-color: var(--bgColor);
     display: flex;
-    /* overflow: hidden; */
 }
 
 main {
     width: 100%;
     background-color: var(--bgColor);
-    height: 90vh;
+    max-height: 97vh;
+    overflow: auto;
 }
 
 header {
@@ -267,7 +267,7 @@ header .fa-bell {
 
 /* cardebis gastilva */
 .card-type01 {
-    height: 100%
+    height: 80%
 }
 
 .card-type01 h2 {
@@ -283,7 +283,9 @@ header .fa-bell {
     padding: 25px 24px;
     box-shadow: 5px 10px 30px #e1e1e1;
     font-family: "Inter", sans-serif;
-    height: 266px
+    height: 266px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 #amount,
@@ -304,13 +306,13 @@ header .fa-bell {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    height: 100%;
+    gap: 5px;
+    height: 80%;
     justify-content: space-between;
 }
 
 .div2 {
-    gap: 25px
+    gap: 5px
 }
 
 .lil-div {
@@ -386,12 +388,6 @@ header .fa-bell {
     font-weight: 600;
 }
 
-/* .type {
-    position:absolute;
-    top:16px;
-    right:16px;
-} */
-
 .p1 p {
     font-weight: 500;
     cursor: pointer
@@ -423,7 +419,8 @@ header .fa-bell {
     grid-template-columns: repeat(auto-fit, minmax(352px, 1fr));
     grid-auto-rows: 1fr;
     gap: 24px;
-    height: 100%;
+    height: min-content;
+    grid-template-rows: min-content;
 }
 
 .nav {
@@ -527,7 +524,6 @@ header .fa-bell {
 .big-div {
     color: #191919;
     font-weight: 500;
-
 }
 
 .progress {
@@ -675,7 +671,8 @@ header .fa-bell {
 .information {
     background-color: white;
     padding: 16px 24px 34px 24px;
-    height: 100%;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
 .information ul {
@@ -686,7 +683,8 @@ header .fa-bell {
     width: 60%;
     font-size: 16px;
     font-weight: 700;
-    color: #525256
+    color: #525256;
+    height: 50px;
 }
 
 .information nav ul {
@@ -706,7 +704,9 @@ header .fa-bell {
 }
 
 .type02 {
-    grid-row: span 2;
+    grid-row:span 3;
+    grid-column-start: 3;
+    grid-row-end:3;
     display: flex;
     flex-direction: column;
 }
@@ -734,7 +734,7 @@ header .fa-bell {
 
 .card-type03 {
     grid-column: span 2;
-    height: 100%
+    min-height: 200px;
 }
 
 .detail-info ul li {
@@ -758,7 +758,7 @@ header .fa-bell {
 .detail-info {
     height: 100%;
     overflow: auto;
-    margin-top: 30px
+    /* margin-top: 30px */
 }
 
 ::-webkit-scrollbar {
@@ -815,9 +815,10 @@ header .fa-bell {
     justify-content: space-around;
     padding-bottom: 30px
 }
-.transactions a{
+
+.transactions a {
     text-decoration: none;
-    color:black
+    color: black
 }
 
 
@@ -845,7 +846,9 @@ header .fa-bell {
 }
 
 #transaction-div {
+    padding-top: 100px;
     max-width: 500px;
+    min-height: 400px;
     width: 80%;
     background-color: white;
     box-shadow: 0px 5px 5px rgba(171, 171, 171, 0.676);
@@ -918,5 +921,89 @@ header .fa-bell {
 .transaction-story div span {
     font-size: 12px;
     font-weight: 400;
-    color:rgb(177, 176, 176)
+    color: rgb(177, 176, 176)
+}
+
+.card-type03 .grid-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 200px;
+    border: 1px solid rgb(245, 245, 245);
+    padding: 10px
+}
+
+.grid-div p {
+    color: #878787;
+    font-size: 12px
+}
+
+.txt {
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.prcnt {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.verion01 .grid-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-type03 .card-info {
+    /* height: 70%; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* max-height:212px; */
+    justify-content: center;
+}
+
+.verion01 {
+    margin-top: 50px;
+    height:30%
+}
+
+.verion01 .grid-div {
+    padding: 0
+}
+
+.verion01 {
+    grid-column-start: span 2;
+    grid-row-start: 3;
+    width:100%;
+}
+
+.verion01 h2:nth-child(1) {
+    font-size: 22px;
+    color: #878787;
+    font-weight: 400;
+    padding-bottom: 8px;
+}
+
+.card-type03 h2:nth-child(1) {
+    font-size: 22px;
+    color: #878787;
+    font-weight: 400;
+    padding-bottom: 8px
+}
+
+.fa-arrow-right {
+    font-size: 1.5rem;
+    color: rgb(201, 201, 201)
+}
+
+.m {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    width: 70%;
 }

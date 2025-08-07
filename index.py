@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import random
-# import ssl
 import smtplib
 from email.message import EmailMessage
 import os
@@ -188,6 +187,16 @@ def code():
                             'reason': 'registration',
                             'date': curent_time
                         }
+                    }
+                },
+                'expenses_breakdown': {
+                    curent_time[3::]: {
+                        'house': 0,
+                        'food': 0,
+                        'transportation': 0,
+                        'entertainment': 0,
+                        'shopping': 0,
+                        'others': 0,
                     }
                 }
             }
