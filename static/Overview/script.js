@@ -106,21 +106,21 @@ save.addEventListener('click', async () => {
             const units = ['', 'K', 'M', 'B', 'T'];
             let unitIndex = 0;
             while (amount >= 1000 && unitIndex < units.length - 1) {
-                amount /= 1000;
-                unitIndex++;
+                amount /= 1000
+                unitIndex++
             }
-            return `${Math.floor(amount)}${units[unitIndex]}`;
+            return `${Math.floor(amount)}${units[unitIndex]}`
         }
 
-        document.querySelectorAll('.type01')[0].textContent = formatMoney(curentMoney);
-        document.querySelectorAll('.type01')[1].textContent = formatMoney(targetMoney);
+        document.querySelectorAll('.type01')[0].textContent = formatMoney(curentMoney)
+        document.querySelectorAll('.type01')[1].textContent = formatMoney(targetMoney)
 
-        div.style.opacity = '0';
-        div.style.zIndex = '-2';
+        div.style.opacity = '0'
+        div.style.zIndex = '-2'
 
     } catch (error) {
-        alert('Error communicating with server.');
-        console.error(error);
+        alert('Error')
+        console.error(error)
     }
     window.location.reload()
 })

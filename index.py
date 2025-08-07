@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import random
-import ssl
+# import ssl
 import smtplib
 from email.message import EmailMessage
 import os
@@ -296,8 +296,8 @@ def forgot_password():
             return render_template('Forgot_password.html')
 
         return render_template('Log_in.html', text='Password sent to your email.')
-
-    return render_template('Forgot_password.html')
+    else:
+        return render_template('Forgot_password.html')
 
 
 
