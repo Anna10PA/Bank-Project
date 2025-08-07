@@ -239,17 +239,242 @@ async function renderNotifications() {
 renderNotifications()
 
 
-async function transactionStory( url_name) {
-    let url = await fetch('/curent_user')
-    let data = await url.json()
-    let curent_info = data.transactions[url_name]
+async function transactionStoryAll() {
+    try {
+        let url = await fetch('/curent_user')
+        let user = await url.json()
 
-    console.log(curent_info)
-    transactionStoryDiv.innerHTML = ''
+        console.log('Transactions:', user.transactions)
 
-    for (let key of curent_info) {
-        console.log(curent_info[key])
+        const transactions = user.transactions.all
+        transactionStoryDiv.innerHTML = ''
+
+        if (!transactions || Object.keys(transactions).length === 0) {
+            transactionStoryDiv.innerHTML = '<li>No transactions available.</li>'
+            return
+        }
+
+        for (let sender in transactions) {
+            let tx = transactions[sender]
+
+            let li = document.createElement('li')
+
+            let senderName = document.createElement('p')
+            senderName.textContent = `${sender}`
+
+            let money = document.createElement('p')
+            money.textContent = `$${tx.send_money}`
+            money.classList = 'money_div'
+
+            let tx_reason = document.createElement('span')
+            tx_reason.textContent = `${tx.reason}`
+
+            let date = document.createElement('span')
+            date.textContent = tx.date
+
+            let div = document.createElement('div')
+            let div02 = document.createElement('div')
+
+            div02.appendChild(money)
+            div02.appendChild(date)
+
+            div.appendChild(senderName)
+            div.appendChild(tx_reason)
+
+            li.appendChild(div)
+            li.appendChild(div02)
+
+            div02.className = 'money-div'
+
+            transactionStoryDiv.appendChild(li)
+        }
+    } catch (error) {
+        console.error('Error loading transaction story:', error)
+    }
+}
+transactionStoryAll()
+
+
+async function transactionStoryRevenue() {
+    try {
+        let url = await fetch('/curent_user')
+        let user = await url.json()
+
+        console.log('Transactions:', user.transactions)
+
+        const transactions = user.transactions.revenue
+        transactionStoryDiv.innerHTML = ''
+
+        if (!transactions || Object.keys(transactions).length === 0) {
+            transactionStoryDiv.innerHTML = '<li>No transactions available.</li>'
+            return
+        }
+
+        for (let sender in transactions) {
+            let tx = transactions[sender]
+
+            let li = document.createElement('li')
+
+            let senderName = document.createElement('p')
+            senderName.textContent = `${sender}`
+
+            let money = document.createElement('p')
+            money.textContent = `$${tx.send_money}`
+            money.classList = 'money_div'
+
+            let tx_reason = document.createElement('span')
+            tx_reason.textContent = `${tx.reason}`
+
+            let date = document.createElement('span')
+            date.textContent = tx.date
+
+            let div = document.createElement('div')
+            let div02 = document.createElement('div')
+
+            div02.appendChild(money)
+            div02.appendChild(date)
+
+            div.appendChild(senderName)
+            div.appendChild(tx_reason)
+
+            li.appendChild(div)
+            li.appendChild(div02)
+
+            div02.className = 'money-div'
+
+            transactionStoryDiv.appendChild(li)
+        }
+    } catch (error) {
+        console.error('Error loading transaction story:', error)
+    }
+}
+// transactionStoryRevenue()
+
+
+
+async function transactionStoryExpenses() {
+    try {
+        let url = await fetch('/curent_user')
+        let user = await url.json()
+
+        console.log('Transactions:', user.transactions)
+
+        const transactions = user.transactions.revenue
+        transactionStoryDiv.innerHTML = ''
+
+        if (!transactions || Object.keys(transactions).length === 0) {
+            transactionStoryDiv.innerHTML = '<li>No transactions available.</li>'
+            return
+        }
+
+        for (let sender in transactions) {
+            let tx = transactions[sender]
+
+            let li = document.createElement('li')
+
+            let senderName = document.createElement('p')
+            senderName.textContent = `${sender}`
+
+            let money = document.createElement('p')
+            money.textContent = `$${tx.send_money}`
+            money.classList = 'money_div'
+
+            let tx_reason = document.createElement('span')
+            tx_reason.textContent = `${tx.reason}`
+
+            let date = document.createElement('span')
+            date.textContent = tx.date
+
+            let div = document.createElement('div')
+            let div02 = document.createElement('div')
+
+            div02.appendChild(money)
+            div02.appendChild(date)
+
+            div.appendChild(senderName)
+            div.appendChild(tx_reason)
+
+            li.appendChild(div)
+            li.appendChild(div02)
+
+            div02.className = 'money-div'
+
+            transactionStoryDiv.appendChild(li)
+        }
+    } catch (error) {
+        console.error('Error loading transaction story:', error)
     }
 }
 
-transactionStory('all')
+
+let navItems = document.querySelectorAll('.navigation li')
+
+navItems.forEach(item => {
+    item.addEventListener('click', async () => {
+        navItems.forEach(i => i.classList.remove('curent_page'))
+
+        item.classList.add('curent_page')
+
+        const type = item.id
+
+        try {
+            const res = await fetch('/curent_user')
+            const user = await res.json()
+
+            let transactions = {}
+
+            if (type === 'All') {
+                transactions = user.transactions.all
+            } else if (type === 'Revenue') {
+                transactions = user.transactions.revenue
+            } else if (type === 'Expenses') {
+                transactions = user.transactions.expenses
+            }
+
+            transactionStoryDiv.innerHTML = ''
+
+            if (!transactions || Object.keys(transactions).length === 0) {
+                transactionStoryDiv.innerHTML = '<li>Not found</li>'
+            }
+
+            for (let sender in transactions) {
+                let tx = transactions[sender]
+
+                let li = document.createElement('li')
+
+                let senderName = document.createElement('p')
+                senderName.textContent = `${sender}`
+
+                let money = document.createElement('p')
+                money.textContent = `$${tx.send_money}`
+                money.className = 'money_div'
+
+                let tx_reason = document.createElement('span')
+                tx_reason.textContent = `${tx.reason}`
+
+                let date = document.createElement('span')
+                date.textContent = tx.date
+
+                let div = document.createElement('div')
+                let div02 = document.createElement('div')
+
+                div02.appendChild(money)
+                div02.appendChild(date)
+
+                div.appendChild(senderName)
+                div.appendChild(tx_reason)
+
+                li.appendChild(div)
+                li.appendChild(div02)
+
+                div02.className = 'money-div'
+
+                transactionStoryDiv.appendChild(li)
+            }
+
+        } catch (error) {
+            console.error('Failed to fetch transactions:', error)
+            transactionStoryDiv.innerHTML = '<li>Error loading transactions</li>'
+        }
+    })
+})

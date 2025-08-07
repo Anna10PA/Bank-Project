@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/transaction_to_someone/style.css">
+</head>
+
+<body>
+    <h2>Transform money</h2>
+    <div class="conteiner">
+        <div class="from div">
+            <p><span>From: </span> {{ name }} </p>
+            <p><span>Card number: </span> {{ account_number['number'] }} </p>
+            <p><span>Account: </span> {{ account_number['accaunt_number'] }} </p>
+            <p><span>Curent money: </span> ${{ account_number['money'] }}</p>
+            <div class="send">
+                <label for="">Transform: </label>
+                $<input type="number" min="0">
+            </div>
+            <div class="card-code">
+                <label for="code">
+                    Code:
+                </label>
+                <input type="number" min="0" minlength="4" required>
+            </div>
+        </div>
+        <div class="to div">
+            <p><span>To: </span><pre id="to"></pre> </p>
+            <p><span>Card number: </span><pre id="card-number"></pre> </p>
+            <p><span>Account: </span> <input type="text" id="account"> </p>
+        </div>
+    </div>
+    <button id="send">Send</button>
+</body>
+<script src="../static/transaction_to_someone/script.js"></script>
+
+</html>

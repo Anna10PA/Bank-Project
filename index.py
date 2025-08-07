@@ -175,7 +175,8 @@ def code():
                     'revenue': {
                         'FINEbank.IO': {
                             'send_money': money,
-                            'reason': 'registration'
+                            'reason': 'registration',
+                            'date': curent_time
                         }
                     },
                     'expenses': {
@@ -184,7 +185,8 @@ def code():
                     'all': {
                         'FINEbank.IO': {
                             'send_money': money,
-                            'reason': 'registration'
+                            'reason': 'registration',
+                            'date': curent_time
                         }
                     }
                 }
@@ -289,6 +291,7 @@ def forgot_password():
             with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
                 smtp.login(my_email, my_password)
                 smtp.send_message(em)
+                
         except smtplib.SMTPAuthenticationError:
             return render_template('Forgot_password.html')
 
@@ -323,7 +326,7 @@ def overview():
     if not user:
         return redirect(url_for('log_in_page'))
     total = 0
-    for m in user.get('cards', {}).values():
+    for m in user['cards'].values():
         total += m['money']
 
     return render_template('Overview_index.html', title='FINEbank.IO'
@@ -395,6 +398,12 @@ def update_goal():
 
     return jsonify([])
 
+
+@app.route('/transactionToSomeone')
+def transactionToSomeone():
+    user = session['curent_user']
+    main_card = user['cards']['card-01']
+    return render_template('transaction_to_someone.html', title='FINEbank.IO - Transaction', account_number=main_card, name=session.get('name'))
 
 @app.route('/goal')
 def goal():
