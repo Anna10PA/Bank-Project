@@ -154,7 +154,11 @@ def code():
                         'accaunt_number': Account_number,
                         'money': money,
                         'type': 'mastercard',
-                        'code': card_code
+                        'code': card_code,
+                        'purpose': 'Credit Card',
+                        'transaction-to-someone': {
+                           
+                        }
                     }
                 },
                 "profile": 'https://cdn-icons-png.flaticon.com/512/219/219983.png',
@@ -423,6 +427,11 @@ def goal():
 def Balances():
     user = session['curent_user']
     return render_template('Balance.html', title='FINEbank.IO - Balance', name=session.get('name'), userinfo=user)
+
+@app.route('/details')
+def Details():
+    user = session['curent_user']
+    return render_template('detal.html', title='FINEbank.IO - Detal', userinfo = user, name=session.get('name'))
 
 @app.route('/log_out')
 def log_out():

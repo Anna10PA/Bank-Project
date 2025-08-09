@@ -284,6 +284,15 @@ header .fa-bell {
     height:100%
 }
 
+.main h1 {
+    color: #878787;
+    font-weight:400;
+    font-size:22px
+}
+::-webkit-scrollbar {
+    width:0
+}
+
 .section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
@@ -299,126 +308,6 @@ header .fa-bell {
     display: none
 }
 
-/*  */
-.card {
-    background-color: white;
-    padding:24px;
-    border-radius:8px;
-}
-
-.div01 {
-    display:flex;
-    justify-content: space-between;
-    padding-bottom:12px;
-    border-bottom:1px solid #D2D2D2
-}
-
-.div01 p {
-    color: #878787;
-    font-weight:600
-}
-
-.div01 span {
-    font-size:12px;
-    color:#666666
-}
-
-.card-info span{
-    color: #191919;
-    font-size:20px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.card-info p {
-    color: #9F9F9F
-}
-
-.card-info {
-    padding-top:12px;
-    line-height: 1.7;
-}
-
-.btn a{
-    color: #299D91;
-    text-decoration: none;
-    font-size:16px;
-    font-weight:500
-}
-.btn {
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    height: min-content;
-    padding-top:15px
-}
-
-.btn button {
-    padding:8px 20px;
-    border-radius:8px;
-    background-color: #299D91;
-    border:none;
-    color:white;
-    font-weight:400;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.btn button:hover {
-    background-color: #1c655e;
-}
-
-.main h1 {
-    color: #878787;
-    font-weight:400;
-    font-size:22px
-}
-::-webkit-scrollbar {
-    width:0
-}
-.add, .card {
-    box-shadow: 0px 15px 15px #66666624;
-}
-
-.add {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:20px;
-    background-color: white;
-    border-radius:8px;
-    flex-direction: column;
-    padding:24px 0;
-    height:100%
-}
-
-.add button {
-    background-color: #299D91;
-    border-radius:4px;
-    padding:12px 32px;
-    border:none;
-    color:white;
-    font-size:16px;
-    letter-spacing: 0.5px;
-    transition: 0.5s;
-    cursor:pointer
-}
-
-.add button:hover {
-    background-color: #1c655e;
-}
-
-.add a {
-    color: #9F9F9F;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.pict {
-    display:flex;
-    align-items: center;
-    gap:5px
-}
 
 @media (max-width: 1590px) {
     aside {

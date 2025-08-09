@@ -73,13 +73,13 @@ cross02.addEventListener('click', () => {
 })
 
 save.addEventListener('click', async () => {
-    let targetMoney = Number(div.querySelector('input').value);
-    let curentMoney = Number(div.querySelectorAll('input')[1].value);
+    let targetMoney = Number(div.querySelector('input').value)
+    let curentMoney = Number(div.querySelectorAll('input')[1].value)
 
     if (!targetMoney || !curentMoney || targetMoney <= curentMoney) {
-        alert('Not correct info');
-        div.style.zIndex = '-2';
-        div.style.opacity = '0';
+        alert('Not correct info')
+        div.style.zIndex = '-2'
+        div.style.opacity = '0'
         return;
     }
 
@@ -87,24 +87,23 @@ save.addEventListener('click', async () => {
         const response = await fetch('/update_goal', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ target: targetMoney, curent: curentMoney })
-        });
+            body: JSON.stringify(
+                { target: targetMoney, curent: curentMoney })
+        })
 
         if (!response.ok) {
-            alert('Failed to update goal on server.');
-            return;
+            alert('Failed to update goal on server.')
         }
 
-        const data = await response.json();
-        console.log('Update response data:', data);
+        let data = await response.json()
+        console.log('Update response data:', data)
 
-        // განახლე UI მხოლოდ წარმატებული შენახვის შემდეგ
-        for (let i of target) i.textContent = targetMoney;
-        for (let i of curentM) i.textContent = curentMoney;
+        for (let i of target) i.textContent = targetMoney
+        for (let i of curentM) i.textContent = curentMoney
 
         function formatMoney(amount) {
-            const units = ['', 'K', 'M', 'B', 'T'];
-            let unitIndex = 0;
+            const units = ['', 'K', 'M', 'B', 'T']
+            let unitIndex = 0
             while (amount >= 1000 && unitIndex < units.length - 1) {
                 amount /= 1000
                 unitIndex++
@@ -177,8 +176,6 @@ async function getGoal() {
     } catch (error) {
         console.error('Failed to load goal data', error)
     }
-
-
 }
 
 getGoal()
@@ -228,7 +225,6 @@ async function renderNotifications() {
                     transactionDiv.style.transform = 'translateY(-500px)'
                     transactionDiv.style.zIndex = '-3'
                     transactionDiv.style.opacity = '0'
-                    window.location.reload()
                 }
             })
         }

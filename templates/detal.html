@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../static/Balance/style.css">
+    <link rel="stylesheet" href="../static/detal/style.css">
     <script src="https://kit.fontawesome.com/b2005d7310.js" crossorigin="anonymous"></script>
 
 </head>
@@ -103,67 +103,12 @@
             </div>
         </header>
         <section class="main">
-            <h1>Balances</h1>
+            <h1>Account Details</h1>
             <div class="section">
-                <div class="card">
-                    <div class="div01">
-                        <p>Credit card</p>
-                        <div class="pict">
-                            <span>{{ userinfo.cards['card-01'].type }}</span>
-                            {% if userinfo.cards['card-01'].type == 'mastercard' %}
-                            <img src="../static/image/Mastercard-Logo 1.png" alt="">
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <span>
-                            {{userinfo.cards['card-01'].number}}
-                        </span>
-                        <p>Account Number</p>
-                    </div>
-                    <div class="card-info">
-                        <span>
-                            ${{userinfo.cards['card-01'].money}}
-                        </span>
-                        <p>Total amount</p>
-                    </div>
-                    <div class="btn">
-                        <a href="">Remove</a>
-                        <a href="/details">
-                            <button>Details > </button>
-                        </a>
-                    </div>
-                </div>
-                <div class="add">
-                    <button>Add accounts</button>
-                    <a href="">Edit Accounts</a>
-                </div>
             </div>
         </section>
     </main>
-    <script src="../static/Balance/script.js"></script>
 </body>
+<script src="../static/detal/script.js"></script>
 
 </html>
-
-<!-- <div class="card">
-        <div class="div01">
-            <p>Card name</p>
-                <div class="pict">
-                    <span>Card Type</span>
-                    <img src="" alt="">
-                    </div>
-                </div>
-            <div class="card-info">
-            <span>card number</span>
-            <p>Account Number</p>
-        </div>
-        <div class="card-info">
-            <span>money</span>
-            <p>Total amount</p>
-        </div>
-        <div class="btn">
-            <a href="">Remove</a>
-            <button>Details > </button>
-        </div>
-    </div> -->
