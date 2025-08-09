@@ -53,7 +53,18 @@ header span {
     font-family: "Inter", sans-serif;
 }
 
+aside .fa-xmark {
+    position: absolute;
+    color: white;
+    top: -30px;
+    right: -5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
 aside {
+    transition: 0.5s;
     min-width: 280px;
     background-color: var(--aside);
     height: 100%;
@@ -153,6 +164,7 @@ aside nav ul li:hover {
     gap: 50px;
     width: 100%;
     align-items: center;
+    position: relative
 }
 
 aside nav a {
@@ -350,6 +362,7 @@ header .fa-bell {
     border-radius: 4px;
     padding: 16px;
     color: white;
+    gap: 10px;
     position: relative;
     display: flex;
     align-items: center;
@@ -416,7 +429,7 @@ header .fa-bell {
 .main {
     padding: 20px 32px 20px 24px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(352px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
     grid-auto-rows: 1fr;
     gap: 24px;
     height: min-content;
@@ -673,6 +686,7 @@ header .fa-bell {
     padding: 16px 24px 34px 24px;
     grid-row-start: 1;
     grid-row-end: 3;
+    height: 100%
 }
 
 .information ul {
@@ -692,6 +706,7 @@ header .fa-bell {
     width: 100%;
     justify-content: space-between;
     text-align: center;
+    gap: 20px
 }
 
 .information ul li {
@@ -704,11 +719,23 @@ header .fa-bell {
 }
 
 .type02 {
-    grid-row:span 3;
+    grid-row: span 3;
     grid-column-start: 3;
-    grid-row-end:3;
+    grid-row-end: 4;
     display: flex;
     flex-direction: column;
+    height: 79vh
+}
+
+.blur {
+    background-color: hsl(0, 0%, 95%);
+    width: 40px;
+    height: 56px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #878787;
 }
 
 .header-01 {
@@ -756,9 +783,7 @@ header .fa-bell {
 }
 
 .detail-info {
-    height: 100%;
-    overflow: auto;
-    /* margin-top: 30px */
+    height: 78vh;
 }
 
 ::-webkit-scrollbar {
@@ -771,6 +796,7 @@ header .fa-bell {
     align-items: start;
     gap: 0px;
     line-height: 0.8;
+    width: 50px
 }
 
 .txt h2 {
@@ -851,7 +877,7 @@ header .fa-bell {
     min-height: 400px;
     width: 80%;
     background-color: white;
-    box-shadow: 0px 5px 5px rgba(171, 171, 171, 0.676);
+    border-bottom: 1px solid rgb(193, 193, 193);
     border-radius: 8px;
     position: absolute;
     top: 80px;
@@ -895,11 +921,27 @@ header .fa-bell {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
     gap: 5px;
+    height: 100%
 }
 
-.transaction-story li div {
+.profile-img-txt {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-direction: row;
+}
+
+.transaction-story img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.transaction-story .just-div,
+.transaction-story .money-div {
     display: flex;
     flex-direction: column;
     gap: 2px
@@ -959,7 +1001,7 @@ header .fa-bell {
 }
 
 .card-type03 .card-info {
-    /* height: 70%; */
+    height: min-content;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     /* max-height:212px; */
@@ -968,7 +1010,7 @@ header .fa-bell {
 
 .verion01 {
     margin-top: 50px;
-    height:30%
+    height: 30%
 }
 
 .verion01 .grid-div {
@@ -978,7 +1020,7 @@ header .fa-bell {
 .verion01 {
     grid-column-start: span 2;
     grid-row-start: 3;
-    width:100%;
+    width: 100%;
 }
 
 .verion01 h2:nth-child(1) {
@@ -1006,4 +1048,105 @@ header .fa-bell {
     gap: 10px;
     justify-content: space-between;
     width: 70%;
+}
+
+#fa-bars {
+    display: none
+}
+
+@media (max-width: 1590px) {
+    aside {
+        position: absolute;
+        transform: translateX(-300px);
+        z-index: 2
+    }
+
+    #fa-bars {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    aside .fa-xmark {
+        display: block
+    }
+}
+
+@media (max-width: 1300px) {
+    aside .fa-xmark {
+        display: block;
+    }
+
+    .main {
+        grid-auto-rows: min-content;
+    }
+
+    .goal {
+        grid-column-start: 1;
+    }
+
+    .ransaction {
+        grid-column-start: 2;
+        height: 65vh;
+    }
+
+    .detail-info {
+        height: 60vh
+    }
+
+    .Expenses-Breakdown {
+        grid-row-start: 3;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        margin-top: 50px;
+    }
+
+    .big-div p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 780px) {
+    .ransaction {
+        grid-column-start: 1;
+        grid-row-start: 3
+    }
+
+    .Expenses-Breakdown {
+        grid-row-start: 4;
+        grid-column: 1/2;
+    }
+
+    .Revenue-Breakdown {
+        grid-row-start: 5;
+        grid-column: 1/2
+    }
+
+    .card-info {
+        display: flex;
+        flex-direction: column
+    }
+
+    .search {
+        max-width: min-content;
+    }
+
+    .section02 {
+        max-width: min-content;
+
+    }
+}
+
+@media (max-width: 490px) {
+    .section02 {
+        gap: 10px
+    }
+
+    .section01 {
+        gap: 10px
+    }
+
+    header span {
+        display: none
+    }
 }

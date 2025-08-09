@@ -14,6 +14,7 @@
 <body>
     <aside>
         <div class="txt01">
+            <i class="fa-solid fa-xmark" id="fa-xmark"></i>
             <h2>
                 <span>FINE</span>bank<span>.IO</span>
             </h2>
@@ -21,7 +22,8 @@
                 <ul>
                     <a href="/overview">
                         <li class="curent-page">
-                            <img src="../static/image/Overview.png" alt=""> Overview
+                            <img src="../static/image/Overview.png" alt=""> 
+                            Overview
                         </li>
                     </a>
                     <a href="/Balances">
@@ -160,6 +162,7 @@
     <main>
         <header>
             <div class="section01">
+                <i class="fa-solid fa-bars" id="fa-bars"></i>
                 <h1>Hello {{ userinfo.name }}</h1>
                 <span> >> May 19, 2023</span>
             </div>
@@ -214,7 +217,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-type01">
+            <div class="card-type01 goal">
                 <h2>Goals</h2>
                 <div class="card-info">
                     <div class="p1">
@@ -260,7 +263,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-type01 type02">
+            <div class="card-type01 type02 ransaction">
                 <div class="header-01">
                     <h2>Recent Transaction</h2>
                     <a href="">View All <span> ></span> </a>
@@ -279,12 +282,11 @@
                     </div>
                 </div>
             </div>
-            <div class="card-type03">
+            <div class="card-type03 Expenses-Breakdown">
                 <h2>Expenses Breakdown</h2>
                 <div class="card-info">
                     <div class="grid-div">
                         <div class="m">
-
                             <img src="../static/image/home.png" alt="">
                             <div class="txt">
                                 <p>Housing</p>
@@ -299,7 +301,6 @@
                     </div>
                     <div class="grid-div">
                         <div class="m">
-
                             <img src="../static/image/food.png" alt="">
                             <div class="txt">
                                 <p>Food</p>
@@ -314,7 +315,6 @@
                     </div>
                     <div class="grid-div">
                         <div class="m">
-
                             <img src="../static/image/transport.png" alt="">
                             <div class="txt">
                                 <p>Transportation</p>
@@ -329,7 +329,6 @@
                     </div>
                     <div class="grid-div">
                         <div class="m">
-
                             <img src="../static/image/entertination.png" alt="">
                             <div class="txt">
                                 <p>Entertainment</p>
@@ -344,7 +343,6 @@
                     </div>
                     <div class="grid-div">
                         <div class="m">
-
                             <img src="../static/image/shop.png" alt="">
                             <div class="txt">
                                 <p>Shopping</p>
@@ -359,7 +357,57 @@
                     </div>
                     <div class="grid-div">
                         <div class="m">
-
+                            <img src="../static/image/other.png" alt="">
+                            <div class="txt">
+                                <p>Others</p>
+                                <h2>Price</h2>
+                                <div class="prcnt">
+                                    <p class="procent_grid">Procent</p>
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-type03 Revenue-Breakdown">
+                <h2>Revenue Breakdown</h2>
+                <div class="card-info">
+                    <div class="grid-div">
+                        <div class="m">
+                            <div class="blur">
+                                <i class="fa-solid fa-piggy-bank"></i>
+                            </div>
+                            <div class="txt">
+                                <p>Saves</p>
+                                <h2>Price</h2>
+                                <div class="prcnt">
+                                    <p class="procent_grid">Procent</p>
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="grid-div">
+                        <div class="m">
+                            <div class="blur">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <div class="txt">
+                                <p>Salary</p>
+                                <h2>Price</h2>
+                                <div class="prcnt">
+                                    <p class="procent_grid">Procent</p>
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="grid-div">
+                        <div class="m">
                             <img src="../static/image/other.png" alt="">
                             <div class="txt">
                                 <p>Others</p>

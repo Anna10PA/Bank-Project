@@ -238,243 +238,92 @@ async function renderNotifications() {
 }
 renderNotifications()
 
-
-async function transactionStoryAll() {
+// 
+async function renderTransactions(Type) {
     try {
-        let url = await fetch('/curent_user')
-        let user = await url.json()
+        const url = await fetch('/curent_user')
+        const user = await url.json()
+        const userImg = user.profile
+        const transactions = user.transactions[Type.toLowerCase()]
 
-        console.log('Transactions:', user.transactions)
-
-        const transactions = user.transactions.all
         transactionStoryDiv.innerHTML = ''
 
         if (!transactions || Object.keys(transactions).length === 0) {
             transactionStoryDiv.innerHTML = '<li>No transactions available.</li>'
-            return
         }
 
         for (let sender in transactions) {
             let tx = transactions[sender]
 
             let li = document.createElement('li')
+            let div = document.createElement('div')
+            let div02 = document.createElement('div')
+            let div03 = document.createElement('div')
 
             let senderName = document.createElement('p')
-            senderName.textContent = `${sender}`
+            senderName.textContent = sender
+
+            let tx_reason = document.createElement('span')
+            tx_reason.textContent = tx.reason
 
             let money = document.createElement('p')
             money.textContent = `$${tx.send_money}`
             money.classList = 'money_div'
 
-            let tx_reason = document.createElement('span')
-            tx_reason.textContent = `${tx.reason}`
-
             let date = document.createElement('span')
             date.textContent = tx.date
 
-            let div = document.createElement('div')
-            let div02 = document.createElement('div')
+            let img = document.createElement('img')
+            img.src = userImg
+            
+            div.appendChild(senderName)
+            div.appendChild(tx_reason)
+            div.className = 'just-div'
+            
+            div03.appendChild(img)
+            div03.appendChild(div)
+            div03.className = 'profile-img-txt'
 
             div02.appendChild(money)
             div02.appendChild(date)
 
-            div.appendChild(senderName)
-            div.appendChild(tx_reason)
-
-            li.appendChild(div)
-            li.appendChild(div02)
-
             div02.className = 'money-div'
+            div.className = 'just-div'
+
+            li.appendChild(div03)
+            li.appendChild(div02)
 
             transactionStoryDiv.appendChild(li)
         }
+
     } catch (error) {
         console.error('Error loading transaction story:', error)
+        transactionStoryDiv.innerHTML = '<li>Error loading transactions</li>'
     }
 }
-transactionStoryAll()
-
-
-async function transactionStoryRevenue() {
-    try {
-        let url = await fetch('/curent_user')
-        let user = await url.json()
-
-        console.log('Transactions:', user.transactions)
-
-        const transactions = user.transactions.revenue
-        transactionStoryDiv.innerHTML = ''
-
-        if (!transactions || Object.keys(transactions).length === 0) {
-            transactionStoryDiv.innerHTML = '<li>No transactions available.</li>'
-            return
-        }
-
-        for (let sender in transactions) {
-            let tx = transactions[sender]
-
-            let li = document.createElement('li')
-
-            let senderName = document.createElement('p')
-            senderName.textContent = `${sender}`
-
-            let money = document.createElement('p')
-            money.textContent = `$${tx.send_money}`
-            money.classList = 'money_div'
-
-            let tx_reason = document.createElement('span')
-            tx_reason.textContent = `${tx.reason}`
-
-            let date = document.createElement('span')
-            date.textContent = tx.date
-
-            let div = document.createElement('div')
-            let div02 = document.createElement('div')
-
-            div02.appendChild(money)
-            div02.appendChild(date)
-
-            div.appendChild(senderName)
-            div.appendChild(tx_reason)
-
-            li.appendChild(div)
-            li.appendChild(div02)
-
-            div02.className = 'money-div'
-
-            transactionStoryDiv.appendChild(li)
-        }
-    } catch (error) {
-        console.error('Error loading transaction story:', error)
-    }
-}
-// transactionStoryRevenue()
-
-
-
-async function transactionStoryExpenses() {
-    try {
-        let url = await fetch('/curent_user')
-        let user = await url.json()
-
-        console.log('Transactions:', user.transactions)
-
-        const transactions = user.transactions.revenue
-        transactionStoryDiv.innerHTML = ''
-
-        if (!transactions || Object.keys(transactions).length === 0) {
-            transactionStoryDiv.innerHTML = '<li>No transactions available.</li>'
-            return
-        }
-
-        for (let sender in transactions) {
-            let tx = transactions[sender]
-
-            let li = document.createElement('li')
-
-            let senderName = document.createElement('p')
-            senderName.textContent = `${sender}`
-
-            let money = document.createElement('p')
-            money.textContent = `$${tx.send_money}`
-            money.classList = 'money_div'
-
-            let tx_reason = document.createElement('span')
-            tx_reason.textContent = `${tx.reason}`
-
-            let date = document.createElement('span')
-            date.textContent = tx.date
-
-            let div = document.createElement('div')
-            let div02 = document.createElement('div')
-
-            div02.appendChild(money)
-            div02.appendChild(date)
-
-            div.appendChild(senderName)
-            div.appendChild(tx_reason)
-
-            li.appendChild(div)
-            li.appendChild(div02)
-
-            div02.className = 'money-div'
-
-            transactionStoryDiv.appendChild(li)
-        }
-    } catch (error) {
-        console.error('Error loading transaction story:', error)
-    }
-}
-
-
 let navItems = document.querySelectorAll('.navigation li')
 
 navItems.forEach(item => {
-    item.addEventListener('click', async () => {
+    item.addEventListener('click', () => {
         navItems.forEach(i => i.classList.remove('curent_page'))
-
         item.classList.add('curent_page')
 
-        const type = item.id
-
-        try {
-            const res = await fetch('/curent_user')
-            const user = await res.json()
-
-            let transactions = {}
-
-            if (type === 'All') {
-                transactions = user.transactions.all
-            } else if (type === 'Revenue') {
-                transactions = user.transactions.revenue
-            } else if (type === 'Expenses') {
-                transactions = user.transactions.expenses
-            }
-
-            transactionStoryDiv.innerHTML = ''
-
-            if (!transactions || Object.keys(transactions).length === 0) {
-                transactionStoryDiv.innerHTML = '<li>Not found</li>'
-            }
-
-            for (let sender in transactions) {
-                let tx = transactions[sender]
-
-                let li = document.createElement('li')
-
-                let senderName = document.createElement('p')
-                senderName.textContent = `${sender}`
-
-                let money = document.createElement('p')
-                money.textContent = `$${tx.send_money}`
-                money.className = 'money_div'
-
-                let tx_reason = document.createElement('span')
-                tx_reason.textContent = `${tx.reason}`
-
-                let date = document.createElement('span')
-                date.textContent = tx.date
-
-                let div = document.createElement('div')
-                let div02 = document.createElement('div')
-
-                div02.appendChild(money)
-                div02.appendChild(date)
-
-                div.appendChild(senderName)
-                div.appendChild(tx_reason)
-
-                li.appendChild(div)
-                li.appendChild(div02)
-
-                div02.className = 'money-div'
-
-                transactionStoryDiv.appendChild(li)
-            }
-
-        } catch (error) {
-            console.error('Failed to fetch transactions:', error)
-            transactionStoryDiv.innerHTML = '<li>Error loading transactions</li>'
-        }
+        let type = item.id.toLowerCase()
+        renderTransactions(type)
     })
+})
+
+renderTransactions('All')
+
+
+let menuBar = document.querySelector('#fa-bars')
+let remove = document.querySelector('#fa-xmark')
+let aside = document.querySelector('aside')
+
+menuBar.addEventListener('click', ()=> {
+    aside.style.transform = 'translateX(0)'
+})
+
+remove.addEventListener('click', ()=> {
+    aside.style.transform = 'translateX(-500px)'
 })

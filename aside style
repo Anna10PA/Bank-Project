@@ -279,11 +279,9 @@ header .fa-bell {
 }
 
 /* cardebis gastilva */
+
 .main {
     padding: 20px 32px 20px 24px;
-}
-
-.section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
     grid-auto-rows: 1fr;
@@ -292,19 +290,9 @@ header .fa-bell {
     grid-template-rows: min-content;
 }
 
+
 #fa-bars {
     display: none
-}
-
-/*  */
-.card {
-    background-color: white;
-}
-
-.main h1 {
-    color: #878787;
-    font-weight:400;
-    font-size:22px
 }
 
 @media (max-width: 1590px) {
@@ -355,7 +343,7 @@ header .fa-bell {
     .section01 {
         gap: 10px
     }
-
+    
     header span {
         display: none
     }

@@ -5,22 +5,22 @@
         "password": "FINEbank.IO",
         "cards": {
             "card-01": {
-                "number": "4771 5533 8364 6878",
-                "accaunt_number": "GE40IO0000000799426218",
+                "number": "3663 0206 0376 2164",
+                "accaunt_number": "GE66IO0000000935935082",
                 "money": 100000,
                 "type": "mastercard",
-                "code": "0744"
+                "code": "4300"
             }
         },
         "profile": "https://cdn-icons-png.flaticon.com/512/219/219983.png",
         "goal": {
-            "target": 4000,
-            "curent": 3999
+            "target": 40000,
+            "curent": 30000
         },
         "notification": {
             "read": true,
             "message": {
-                "07/08/2025": [
+                "08/08/2025": [
                     "Congratulations! You've received $100000 from the FINEbank.IO for signing up!"
                 ]
             }
@@ -30,7 +30,7 @@
                 "FINEbank.IO": {
                     "send_money": 100000,
                     "reason": "registration",
-                    "date": "07/08/2025"
+                    "date": "08/08/2025"
                 }
             },
             "expenses": {},
@@ -38,7 +38,7 @@
                 "FINEbank.IO": {
                     "send_money": 100000,
                     "reason": "registration",
-                    "date": "07/08/2025"
+                    "date": "08/08/2025"
                 }
             }
         },

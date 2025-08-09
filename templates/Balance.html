@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../static/Balance/style.css">
+    <script src="https://kit.fontawesome.com/b2005d7310.js" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
     <aside>
         <div class="txt01">
+            <i class="fa-solid fa-xmark" id="fa-xmark"></i>
             <h2>
                 <span>FINE</span>bank<span>.IO</span>
             </h2>
@@ -16,12 +21,12 @@
                 <ul>
                     <a href="/overview">
                         <li>
-                            <img src="../static/image/Overview.png" alt=""> Overview
+                            <img src="../static/image//Overview (1).png" alt=""> Overview
                         </li>
                     </a>
-                    <a href="/balances">
+                    <a href="/Balances">
                         <li class="curent-page">
-                            <img src="../static/image/wallet.png" alt="">
+                            <img src="../static/image/wallet (1).png" alt="">
                             Balances
                         </li>
                     </a>
@@ -53,13 +58,17 @@
             </nav>
         </div>
         <div class="txt02">
-            <div class="logout">
-                <img src="../static/image/Icon.png" alt="">
-                Logout
-            </div>
+            <a href="/log_out">
+                <div class="logout">
+                    <img src="../static/image/Icon.png" alt="">
+                    Logout
+                </div>
+            </a>
             <div class="profile">
                 <div class="user">
-                    <img src="https://cdn-icons-png.flaticon.com/512/219/219983.png" alt="">
+                    {% if userinfo.profile %}
+                    <img src="{{ userinfo.profile }}" alt="" id="profile">
+                    {% endif %}
                     <div class="user-name">
                         <p class="name">{{ name }}</p>
                         <span>View profile</span>
@@ -69,121 +78,204 @@
             </div>
         </div>
     </aside>
+    <main>
+        <header>
+            <div class="section01">
+                <i class="fa-solid fa-bars" id="fa-bars"></i>
+                <span> >> May 19, 2023</span>
+            </div>
+            <div class="section02">
+                <div class="alarm">
+                    <i class="fa-solid fa-bell"></i>
+                    {% if not userinfo.notification.read %}
+                    <div class="round-btn"></div>
+                    {% endif %}
+                </div>
+                <div class="search">
+                    <input type="search" placeholder="Search here">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </header>
+        <section class="main">
+            <h1>Balances</h1>
+            <div class="section">
+                <div class="card">
+                    <div class="div01">
+                        <p>Card name</p>
+                        <div class="pict">
+                            <span>Card Type</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <span>card number</span>
+                        <p>Account Number</p>
+                    </div>
+                    <div class="card-info">
+                        <span>money</span>
+                        <p>Total amount</p>
+                    </div>
+                    <div class="btn">
+                        <a href="">Remove</a>
+                        <button>Details > </button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="div01">
+                        <p>Card name</p>
+                        <div class="pict">
+                            <span>Card Type</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <span>card number</span>
+                        <p>Account Number</p>
+                    </div>
+                    <div class="card-info">
+                        <span>money</span>
+                        <p>Total amount</p>
+                    </div>
+                    <div class="btn">
+                        <a href="">Remove</a>
+                        <button>Details > </button>
+                    </div>
+                </div>
 
-    <div class="upper">
-        <div class="left">
-            <p class="Date">>> May 19 2023</p>
-        </div>
-        <div class="right">
-            <img src="./icone-de-cloche-grise.png" alt="" width="25" height="25" style="margin-top: 5px;">
-            <div class="search-container">
-                <input type="text" placeholder="Search here">
-                <img src="./free-search-icon-2903-thumb.png" alt="" width="20" height="20">
+                <div class="card">
+                    <div class="div01">
+                        <p>Card name</p>
+                        <div class="pict">
+                            <span>Card Type</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <span>card number</span>
+                        <p>Account Number</p>
+                    </div>
+                    <div class="card-info">
+                        <span>money</span>
+                        <p>Total amount</p>
+                    </div>
+                    <div class="btn">
+                        <a href="">Remove</a>
+                        <button>Details > </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="div01">
+                        <p>Card name</p>
+                        <div class="pict">
+                            <span>Card Type</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <span>card number</span>
+                        <p>Account Number</p>
+                    </div>
+                    <div class="card-info">
+                        <span>money</span>
+                        <p>Total amount</p>
+                    </div>
+                    <div class="btn">
+                        <a href="">Remove</a>
+                        <button>Details > </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="div01">
+                        <p>Card name</p>
+                        <div class="pict">
+                            <span>Card Type</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <span>card number</span>
+                        <p>Account Number</p>
+                    </div>
+                    <div class="card-info">
+                        <span>money</span>
+                        <p>Total amount</p>
+                    </div>
+                    <div class="btn">
+                        <a href="">Remove</a>
+                        <button>Details > </button>
+                    </div>
+                </div>
+<div class="card">
+                    <div class="div01">
+                        <p>Card name</p>
+                        <div class="pict">
+                            <span>Card Type</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <span>card number</span>
+                        <p>Account Number</p>
+                    </div>
+                    <div class="card-info">
+                        <span>money</span>
+                        <p>Total amount</p>
+                    </div>
+                    <div class="btn">
+                        <a href="">Remove</a>
+                        <button>Details > </button>
+                    </div>
+                </div>
+<div class="card">
+                    <div class="div01">
+                        <p>Card name</p>
+                        <div class="pict">
+                            <span>Card Type</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <span>card number</span>
+                        <p>Account Number</p>
+                    </div>
+                    <div class="card-info">
+                        <span>money</span>
+                        <p>Total amount</p>
+                    </div>
+                    <div class="btn">
+                        <a href="">Remove</a>
+                        <button>Details > </button>
+                    </div>
+                </div>
+<div class="card">
+                    <div class="div01">
+                        <p>Card name</p>
+                        <div class="pict">
+                            <span>Card Type</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <span>card number</span>
+                        <p>Account Number</p>
+                    </div>
+                    <div class="card-info">
+                        <span>money</span>
+                        <p>Total amount</p>
+                    </div>
+                    <div class="btn">
+                        <a href="">Remove</a>
+                        <button>Details > </button>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </div>
-    <div class="bottom"></div>  
-    <p style="color: rgb(159,159,159); font-size: 18px; margin-top: 10px; margin-right: 800px;">Balances</p>
-    <div class="container">
-        <div class="topdiv">
-            <div class="div1">
-                <div class="rows">
-                    <p style="color: rgb(159,159,159); font-size: 14px; margin-top: 10px;">Credit Card</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px; margin-top: 10px;">Master Card</p>
-                </div>
-                <div class="columns">
-                    <p>3388 4556 8860 8157</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Acount Number</p>
-                </div>
-                <div class="columns">
-                    <p>$25000</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Total Amount</p>
-                </div>
-                <div class="rows">
-                    <p style="color: #299D91; margin-top: 10px;">Remove</p>
-                    <button class="details-button">Detailes ></button>
-                </div>
-            </div>
-            <div class="div2">
-                <div class="rows">
-                    <p style="color: rgb(159,159,159); font-size: 14px; margin-top: 10px;">Credit Card</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px; margin-top: 10px;">Master Card</p>
-                </div>
-                <div class="columns">
-                    <p>3388 4556 8860 8157</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Acount Number</p>
-                </div>
-                <div class="columns">
-                    <p>$25000</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Total Amount</p>
-                </div>
-                <div class="rows">
-                    <p style="color: #299D91; margin-top: 10px;">Remove</p>
-                    <button class="details-button">Detailes ></button>
-                </div>
-            </div>
-            <div class="div3">
-                <div class="rows">
-                    <p style="color: rgb(159,159,159); font-size: 14px; margin-top: 10px;">Credit Card</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px; margin-top: 10px;">Master Card</p>
-                </div>
-                <div class="columns">
-                    <p>3388 4556 8860 8157</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Acount Number</p>
-                </div>
-                <div class="columns">
-                    <p>$25000</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Total Amount</p>
-                </div>
-                <div class="rows">
-                    <p style="color: #299D91; margin-top: 10px;">Remove</p>
-                    <button class="details-button">Detailes ></button>
-                </div>
-            </div>
-        </div>
-        <div class="bottomdiv">
-            <div class="div4">
-                <div class="rows">
-                    <p style="color: rgb(159,159,159); font-size: 14px; margin-top: 10px;">Credit Card</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px; margin-top: 10px;">Master Card</p>
-                </div>
-                <div class="columns">
-                    <p>3388 4556 8860 8157</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Acount Number</p>
-                </div>
-                <div class="columns">
-                    <p>$25000</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Total Amount</p>
-                </div>
-                <div class="rows">
-                    <p style="color: #299D91; margin-top: 10px;">Remove</p>
-                    <button class="details-button">Detailes ></button>
-                </div>
-            </div>
-            <div class="div5">
-                <div class="rows">
-                    <p style="color: rgb(159,159,159); font-size: 14px; margin-top: 10px;">Credit Card</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px; margin-top: 10px;">Master Card</p>
-                </div>
-                <div class="columns">
-                    <p>3388 4556 8860 8157</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Acount Number</p>
-                </div>
-                <div class="columns">
-                    <p>$25000</p>
-                    <p style="color: rgb(159,159,159); font-size: 12px;">Total Amount</p>
-                </div>
-                <div class="rows">
-                    <p style="color: #299D91; margin-top: 10px;">Remove</p>
-                    <button class="details-button">Detailes ></button>
-                </div>
-            </div>
-            <div class="div6">
-                    <button class="details-button">Add Acounts</button>
-                    <p style="color: #299D91; font-size: 14px; margin-top: 10px;">Edit Acounts</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
+    <script src="../static/Balance/script.js"></script>
 </body>
+
 </html>

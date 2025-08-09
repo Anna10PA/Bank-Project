@@ -421,7 +421,8 @@ def goal():
 
 @app.route('/Balances')
 def Balances():
-    return render_template('Balance.html', title='FINEbank.IO - Balance', name=session.get('name'))
+    user = session['curent_user']
+    return render_template('Balance.html', title='FINEbank.IO - Balance', name=session.get('name'), userinfo=user)
 
 @app.route('/log_out')
 def log_out():
