@@ -401,9 +401,11 @@ header .fa-bell {
     font-weight: 600;
 }
 
-.p1 p {
+.p1 a {
     font-weight: 500;
-    cursor: pointer
+    color:#525256;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .txt-01 {

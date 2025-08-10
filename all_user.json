@@ -5,12 +5,13 @@
         "password": "FINEbank.IO",
         "cards": {
             "card-01": {
-                "number": "8891 0366 2074 1038",
-                "accaunt_number": "GE07IO0000000924534011",
+                "number": "0446 6435 2849 5465",
+                "accaunt_number": "GE31IO0000000213335888",
                 "money": 100000,
+                "bank_name": "mastercard",
+                "account_type": "credit card",
                 "type": "mastercard",
-                "code": "9530",
-                "purpose": "Credit Card",
+                "code": "7911",
                 "transaction-to-someone": {}
             }
         },
@@ -52,6 +53,13 @@
                 "entertainment": 0,
                 "shopping": 0,
                 "others": 0
+            }
+        },
+        "revenue_breakdown": {
+            "08/2025": {
+                "saves": 0,
+                "salary": 0,
+                "other": 100000
             }
         }
     }

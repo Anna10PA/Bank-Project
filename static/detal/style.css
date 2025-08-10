@@ -301,7 +301,22 @@ header .fa-bell {
     height: min-content;
     grid-template-rows: min-content;
     margin-top:15px;
+    background-color: white;
+    padding:24px;
     height:100%
+}
+
+.section p {
+    color: #525256;
+    font-size:18px;
+    font-weight:600
+}
+
+.info {
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+    align-items: start;
 }
 
 #fa-bars {
@@ -456,4 +471,18 @@ header .fa-bell {
     font-size: 12px;
     font-weight: 400;
     color: rgb(177, 176, 176)
+}
+
+/*  */
+.container {
+    padding: 24px 0
+}
+.container span{
+    color: #9F9F9F;
+    font-size:16px;
+    letter-spacing: 1px;
+}
+
+.container p {
+    color: #525256
 }

@@ -153,9 +153,10 @@ def code():
                         'number': card_number[:-1],
                         'accaunt_number': Account_number,
                         'money': money,
+                        'bank_name': 'mastercard',
+                        'account_type': 'credit card',
                         'type': 'mastercard',
                         'code': card_code,
-                        'purpose': 'Credit Card',
                         'transaction-to-someone': {
                            
                         }
@@ -201,6 +202,13 @@ def code():
                         'entertainment': 0,
                         'shopping': 0,
                         'others': 0,
+                    }
+                },
+                'revenue_breakdown': {
+                    curent_time[3::]: {
+                        'saves': 0,
+                        'salary':0,
+                        'other': money
                     }
                 }
             }
@@ -335,15 +343,22 @@ def get_users():
 
 @app.route('/overview')
 def overview():
+    time = datetime.now()
+    curent_time = time.strftime("%d/%m/%Y")
+
     user = session.get('curent_user')
+    gasavali = user['expenses_breakdown'].get(curent_time[3::])
+    shemosavali = user['revenue_breakdown'].get(curent_time[3::])
+
     if not user:
         return redirect(url_for('log_in_page'))
     total = 0
     for m in user['cards'].values():
         total += m['money']
 
+    
     return render_template('Overview_index.html', title='FINEbank.IO'
-    ' - Overview', userinfo=user, total=total)
+    ' - Overview', userinfo=user, total=total, Expenses = gasavali, Revenue = shemosavali)
 
 
 #  მონაცემის განახლება (ანუ მიზნად როა თუ რაცხა იმის)

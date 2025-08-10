@@ -185,7 +185,7 @@
                 <div class="card-info">
                     <div class="p1">
                         <h3 id="amount">${{ total }}</h3>
-                        <p>All Accounts</p>
+                        <a href="/Balances"><p>All Accounts</p></a>
                     </div>
                     <div class="card">
                         <div class="txt-01">
@@ -290,7 +290,7 @@
                             <img src="../static/image/home.png" alt="">
                             <div class="txt">
                                 <p>Housing</p>
-                                <h2>Price</h2>
+                                <h2>${{ Expenses.house }}</h2>
                                 <div class="prcnt">
                                     <p class="procent_grid">Procent</p>
                                     <i class="fa-solid fa-arrow-up"></i>
@@ -304,7 +304,7 @@
                             <img src="../static/image/food.png" alt="">
                             <div class="txt">
                                 <p>Food</p>
-                                <h2>Price</h2>
+                                <h2>${{ Expenses.food }}</h2>
                                 <div class="prcnt">
                                     <p class="procent_grid">Procent</p>
                                     <i class="fa-solid fa-arrow-up"></i>
@@ -318,7 +318,7 @@
                             <img src="../static/image/transport.png" alt="">
                             <div class="txt">
                                 <p>Transportation</p>
-                                <h2>Price</h2>
+                                <h2>${{ Expenses.transportation }}</h2>
                                 <div class="prcnt">
                                     <p class="procent_grid">Procent</p>
                                     <i class="fa-solid fa-arrow-up"></i>
@@ -332,7 +332,7 @@
                             <img src="../static/image/entertination.png" alt="">
                             <div class="txt">
                                 <p>Entertainment</p>
-                                <h2>Price</h2>
+                                <h2>${{ Expenses.entertainment }}</h2>
                                 <div class="prcnt">
                                     <p class="procent_grid">Procent</p>
                                     <i class="fa-solid fa-arrow-up"></i>
@@ -346,7 +346,7 @@
                             <img src="../static/image/shop.png" alt="">
                             <div class="txt">
                                 <p>Shopping</p>
-                                <h2>Price</h2>
+                                <h2>${{ Expenses.shopping }}</h2>
                                 <div class="prcnt">
                                     <p class="procent_grid">Procent</p>
                                     <i class="fa-solid fa-arrow-up"></i>
@@ -360,7 +360,7 @@
                             <img src="../static/image/other.png" alt="">
                             <div class="txt">
                                 <p>Others</p>
-                                <h2>Price</h2>
+                                <h2>${{ Expenses.others }}</h2>
                                 <div class="prcnt">
                                     <p class="procent_grid">Procent</p>
                                     <i class="fa-solid fa-arrow-up"></i>
@@ -381,7 +381,7 @@
                             </div>
                             <div class="txt">
                                 <p>Saves</p>
-                                <h2>Price</h2>
+                                <h2>${{ Revenue.saves  }}</h2>
                                 <div class="prcnt">
                                     <p class="procent_grid">Procent</p>
                                     <i class="fa-solid fa-arrow-up"></i>
@@ -397,7 +397,7 @@
                             </div>
                             <div class="txt">
                                 <p>Salary</p>
-                                <h2>Price</h2>
+                                <h2>${{ Revenue.salary}}</h2>
                                 <div class="prcnt">
                                     <p class="procent_grid">Procent</p>
                                     <i class="fa-solid fa-arrow-up"></i>
@@ -411,9 +411,11 @@
                             <img src="../static/image/other.png" alt="">
                             <div class="txt">
                                 <p>Others</p>
-                                <h2>Price</h2>
+                                <h2>${{Revenue.other}}</h2>
                                 <div class="prcnt">
-                                    <p class="procent_grid">Procent</p>
+                                    <p class="procent_grid">
+                                        {{ procent_other_revenue }}
+                                    </p>
                                     <i class="fa-solid fa-arrow-up"></i>
                                 </div>
                             </div>
