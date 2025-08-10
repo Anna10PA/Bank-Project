@@ -6,34 +6,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../static/transaction_to_someone/style.css">
+    <script src="https://kit.fontawesome.com/b2005d7310.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <h2>Transform money</h2>
-    <div class="conteiner">
-        <div class="from div">
-            <p><span>From: </span> {{ name }} </p>
-            <p><span>Card number: </span> {{ account_number['number'] }} </p>
-            <p><span>Account: </span> {{ account_number['accaunt_number'] }} </p>
-            <p><span>Curent money: </span> ${{ account_number['money'] }}</p>
-            <div class="send">
-                <label for="">Transform: </label>
-                $<input type="number" min="0">
-            </div>
-            <div class="card-code">
-                <label for="code">
-                    Code:
-                </label>
-                <input type="number" min="0" minlength="4" required>
+    <aside>
+        <div class="txt01">
+            <i class="fa-solid fa-xmark" id="fa-xmark"></i>
+            <h2>
+                <span>FINE</span>bank<span>.IO</span>
+            </h2>
+            <nav>
+                <ul>
+                    <a href="/overview">
+                        <li class="curent-page">
+                            <img src="../static/image/Overview.png" alt=""> 
+                            Overview
+                        </li>
+                    </a>
+                    <a href="/Balances">
+                        <li>
+                            <img src="../static/image/wallet.png" alt="">
+                            Balances
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <img src="../static/image/Transaction.png" alt="">
+                            Transactions
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <img src="../static/image/Expencces.png" alt="">
+                            Expenses
+                        </li>
+                    </a>
+                    <a href="/goal">
+                        <li>
+                            <img src="../static/image/Goal.png" alt="">
+                            Goals
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <img src="../static/image/Settings.png" alt="">
+                            Settings
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+        <div class="txt02">
+            <a href="/log_out">
+                <div class="logout">
+                    <img src="../static/image/Icon.png" alt="">
+                    Logout
+                </div>
+            </a>
+            <div class="profile">
+                <div class="user">
+                    {% if userinfo.profile %}
+                    <img src="{{ userinfo.profile }}" alt="" id="profile">
+                    {% endif %}
+                    <div class="user-name">
+                        <p class="name">{{ userinfo.name }}</p>
+                        <span>View profile</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
             </div>
         </div>
-        <div class="to div">
-            <p><span>To: </span><pre id="to"></pre> </p>
-            <p><span>Card number: </span><pre id="card-number"></pre> </p>
-            <p><span>Account: </span> <input type="text" id="account"> </p>
-        </div>
+    </aside>
+    <div id="transaction-div">
+        <ul id="list">
+        </ul>
     </div>
-    <button id="send">Send</button>
+    <main>
+        <header>
+            <div class="section01">
+                <i class="fa-solid fa-bars" id="fa-bars"></i>
+                <span> >> May 19, 2023</span>
+            </div>
+            <div class="section02">
+                <div class="alarm">
+                    <i class="fa-solid fa-bell"></i>
+                    {% if not userinfo.notification.read %}
+                    <div class="round-btn"></div>
+                    {% endif %}
+                </div>
+                <div class="search">
+                    <input type="search" placeholder="Search here">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </header>
+        <section>
+            <h2>Transform money</h2>
+            <div class="main">
+                <div class="from div">
+                    <p><span>From: </span> {{ name }} </p>
+                    <p><span>Card number: </span> {{ account_number['number'] }} </p>
+                    <p><span>Account: </span> {{ account_number['accaunt_number'] }} </p>
+                    <p><span>Curent money: </span> ${{ account_number['money'] }}</p>
+                    <div class="send">
+                        <label for=""><span>Transform: </span></label><br>
+                        <input type="number" min="0">$
+                    </div>
+                    <div class="card-code">
+                        <label for="code">
+                            <span>Code:</span>
+                        </label><br>
+                        <input type="number" min="0" minlength="4" required>
+                    </div>
+                </div>
+                <div class="to div">
+                    <p><span>To: </span>
+                    <p id="to"></p>
+                    </p>
+                    <p><span>Card number: </span>
+                    <p id="card-number"></p>
+                    </p>
+                    <p><span>Account: </span> <input type="text" id="account"> </p>
+                </div>
+            </div>
+            <button id="send">Send</button>
+            <p id="message"></p>
+        </section>
+    </main>
 </body>
 <script src="../static/transaction_to_someone/script.js"></script>
 

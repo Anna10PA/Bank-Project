@@ -48,7 +48,7 @@ async function renderNotifications() {
         }
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }
 

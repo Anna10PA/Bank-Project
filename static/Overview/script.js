@@ -11,7 +11,7 @@ let samizne = document.querySelector('#sum')
 let sasurveliTanxa = '$1000'
 let change = document.querySelector('#change')
 let div = document.querySelector('.editCard')
-let cross = document.querySelector('.fa-xmark')
+let cross = document.querySelectorAll('.fa-xmark')[1]
 let cross02 = document.querySelector('#second')
 let save = div.querySelector('button')
 let isari = document.querySelector('.isari')
@@ -41,7 +41,6 @@ cross.addEventListener('click', () => {
 
 let is_show = true
 let num = card_number.textContent
-
 
 let numberView = () => {
     is_show = !is_show
@@ -96,7 +95,6 @@ save.addEventListener('click', async () => {
         }
 
         let data = await response.json()
-        console.log('Update response data:', data)
 
         for (let i of target) i.textContent = targetMoney
         for (let i of curentM) i.textContent = curentMoney
@@ -128,7 +126,6 @@ async function getGoal() {
     try {
         let url = await fetch('/get_goal')
         let info = await url.json()
-        console.log(info)
 
         let targetMoney = info.target
         let curentMoney = info.curent
@@ -229,7 +226,7 @@ async function renderNotifications() {
             })
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }
 renderNotifications()
@@ -310,7 +307,6 @@ navItems.forEach(item => {
 })
 
 renderTransactions('All')
-
 
 let menuBar = document.querySelector('#fa-bars')
 let remove = document.querySelector('#fa-xmark')

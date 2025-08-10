@@ -48,7 +48,7 @@ async function renderNotifications() {
         }
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }
 
@@ -67,7 +67,7 @@ Alarm.addEventListener('click', () => {
             body: JSON.stringify({ read: true })
         })
 
-        renderNotifications() 
+        renderNotifications()
 
     } else {
         transactionDiv.style.transform = 'translateY(-500px)'

@@ -12,46 +12,549 @@
     --black: #191919;
     --blue: #299D91;
     --grey: #E4E7EB;
+    --aside: #191919;
+    --txt: #666;
 }
 
 body {
     height: 100vh;
     background-color: var(--bgColor);
-    display:flex;
+    display: flex;
+}
+
+main {
+    width: 100%;
+    background-color: var(--bgColor);
+    max-height: 97vh;
+    overflow: auto;
+}
+
+header input {
+    border:1px solid white
+}
+
+header {
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(30px);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 32px 20px 24px;
+    height: 88px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.265)
+}
+
+header h1 {
+    color: #1f1f1f;
+    font-size: 24px;
+    font-family: "Inter", sans-serif;
+}
+
+header span {
+    color: #9F9F9F;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+}
+
+aside .fa-xmark {
+    position: absolute;
+    color: white;
+    top: -30px;
+    right: -5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+aside {
+    transition: 0.5s;
+    min-width: 280px;
+    background-color: var(--aside);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 28px;
+    justify-content: space-between;
+}
+
+aside h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+aside h2 span {
+    font-weight: 900
+}
+
+aside nav li {
+    list-style-type: none;
+}
+
+aside nav {
+    width: 100%;
+}
+
+aside nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+aside nav ul li,
+.logout {
+    color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    height: 48px;
+    justify-content: start;
+    padding: 12px 16px;
+    cursor: pointer;
+    gap: 10px;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+.txt02 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 44px
+}
+
+.logout {
+    color: white;
+    width: 100%;
+    background-color: hsl(0, 0%, 15%);
+    opacity: 75%;
+    padding: 12px 16px;
+    transition: 0.5s;
+    font-weight: 400;
+}
+
+.logout:hover {
+    background-color: rgb(57, 57, 57);
+    color: white
+}
+
+aside nav ul li:hover {
+    background-color: rgb(57, 57, 57);
+    transform: translateY(2px);
+    color: white
+}
+
+.curent-page {
+    background-color: var(--blue);
+    color: white;
+    transition: 0.5s;
+    font-weight: 600;
+}
+
+.curent-page:hover {
+    transform: translateY(2px);
+    color: white;
+    background-color: var(--blue);
+}
+
+.txt01 {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+    align-items: center;
+    position: relative
+}
+
+aside nav a {
+    width: 100%;
+    text-decoration: none;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid rgb(34, 34, 34);
+    padding: 40px 0
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%
+}
+
+.user p {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    /* letter-spacing: 1px; */
+}
+
+.user span {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    font-size: 12px
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    line-height: 1.2;
+}
+
+.fa-ellipsis-vertical {
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer
+}
+
+/* main page */
+
+.section01 {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+header .fa-bell {
+    font-size: 2rem;
+    color: var(--txt)
+}
+
+.alarm {
+    position: relative;
+    max-width: max-content;
+    cursor: pointer
+}
+
+.round-btn {
+    position: absolute;
+    background-color: var(--blue);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    top: -4px;
+    right: -5px;
+    border: 2px solid var(--bgColor)
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 352px;
+}
+
+.search input {
+    border-radius: 12px;
+    border: 1px solid white;
+    padding: 12px 32px 12px 24px;
+    width: 100%;
+    height: 48px;
+    outline: none;
+    font-size: 16px;
+    box-shadow: -5px 10px 10px #dedede;
+    background-color: white;
+}
+
+.fa-magnifying-glass {
+    position: absolute;
+    right: 20px;
+    color: grey;
+    font-size: 1.4rem
+}
+
+.section02 {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 416px;
+    width: 100%
+}
+
+/* cardebis gastilva */
+
+#transaction-div {
+    padding-top: 100px;
+    max-width: 500px;
+    min-height: 400px;
+    width: 80%;
+    background-color: white;
+    border-bottom: 1px solid rgb(193, 193, 193);
+    border-radius: 8px;
+    position: absolute;
+    top: 80px;
+    padding: 15px;
+    right: 0;
+    transform: translateY(-500px);
+    transition: 0.5s;
+    z-index: -3;
+    opacity: 0;
+}
+
+#list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+}
+
+#list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 7px 10px;
+    border-bottom: 1px solid rgb(216, 216, 216);
+}
+
+#list p {
+    font-weight: 400;
+    color: grey
+}
+
+#list span {
+    font-weight: 500;
+    color: rgb(171, 171, 171);
+}
+
+.transaction-story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 5px;
+    height: 100%
+}
+
+.profile-img-txt {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-direction: row;
+}
+
+.transaction-story img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.transaction-story .just-div,
+.transaction-story .money-div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.transaction-story div {
+    line-height: 1.3;
+}
+
+.transaction-story div p {
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form p {
+    font-weight: 500;
+}
+
+.money-div p {
+    color: rgb(70, 70, 70)
+}
+
+.transaction-story div span {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(177, 176, 176)
+}
+
+.card-type03 .grid-div {
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap:30px
-}
-input {
-    background: none;
-    padding:5px 10px;
-    outline:none;
-    border:1px solid grey;
-    border-radius: 5px;
-    font-size:1rem
-}
-.div {
-    display:flex;
-    flex-direction: column;
-    align-items: start;
-    gap:10px;
-    font-size:1.1rem;
-    font-weight:500
+    width: 100%;
+    min-width: 200px;
+    border: 1px solid rgb(245, 245, 245);
+    padding: 10px
 }
 
-label, span {
-    font-weight:700;
-    letter-spacing: 1px;
-    color:var(--blue)
-}
-
-.conteiner {
-    display:flex;
-    flex-wrap: wrap;
-    gap:40px;
+.grid-div p {
+    color: #878787;
+    font-size: 12px
 }
 
 .div p {
-    display:flex;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 22px
+}
+
+.div {
+    min-width:250px
+}
+
+.txt {
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.prcnt {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    height: min-content;
+    grid-template-rows: min-content;
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%;
+    font-size: 1.2rem;
+    line-height: 2;
+    margin-top: 30px
+}
+
+#fa-bars {
+    display: none
+}
+
+section h2 {
+    color: grey;
+    font-weight: 400;
+}
+
+section {
+    padding: 20px 32px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.to input {
+    width: 250px;
+    font-weight: 400;
+    font-size: 1rem
+}
+
+@media (max-width: 1590px) {
+    aside {
+        position: absolute;
+        transform: translateX(-300px);
+        z-index: 2
+    }
+
+    #fa-bars {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    aside .fa-xmark {
+        display: block
+    }
+}
+
+@media (max-width: 1300px) {
+    aside .fa-xmark {
+        display: block;
+    }
+
+}
+
+@media (max-width: 780px) {
+    .search {
+        max-width: min-content;
+    }
+
+    .section02 {
+        max-width: min-content;
+
+    }
+}
+
+@media (max-width: 490px) {
+    .section02 {
+        gap: 10px
+    }
+
+    .section01 {
+        gap: 10px
+    }
+
+    header span {
+        display: none
+    }
+}
+
+.main input {
+    background: none;
+    border-radius: 4px;
+    border: 1px solid grey !important;
+    outline: none;
+    padding: 5px 15px;
+    font-weight: 400;
+    font-size: 1rem
+}
+
+#account {
+    border:1px solid grey !important
+}
+
+#send {
+    padding:5px 25px;
+    border:none;
+    background-color: #299D91;
+    color:white;
+    border-radius:4px;
+    font-size:1.2rem;
+    font-weight:500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#send:hover {
+    background-color: #175e57;
+}
+
+.main span {
+    color: var(--blue);
+    font-weight: 500;
+    font-size: 1rem
 }

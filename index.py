@@ -10,7 +10,8 @@ app = Flask(__name__)
 app.secret_key = 'MyRandomKeyIDK2009'
 
 my_email = 'futureana735@gmail.com'
-my_password = 'uarl rquc eyvp ynwr'
+my_password = os.environ.get('Gmail_password')
+
 
 
 # Task 001 - საწყისი გვერდი | რეგისტრაციის ჩატვირთვა
@@ -72,7 +73,6 @@ def sign_up():
     for i in range(4):
         card_code += random.choice('0123456789')
 
-
     # 
     try:
         is_dublicat_info = False
@@ -125,7 +125,6 @@ def code():
     if request.method == 'POST':
         user_code = request.form.get('code')
 
-
         if user_code == session.get('code'):
             name = session.get('name')
             email = session.get('email')
@@ -135,7 +134,7 @@ def code():
             card_code = session.get('card_code')
 
 
-            if email.lower() != 'futureana735@gmail.com':
+            if email.lower() != 'futureana735@gmail.com' or email.lower() != 'datodzukaevi38@gmail.com':
                 money = 10000
             else:
                 money = 100000
@@ -155,10 +154,9 @@ def code():
                         'money': money,
                         'bank_name': 'mastercard',
                         'account_type': 'credit card',
-                        'type': 'mastercard',
                         'code': card_code,
                         'transaction-to-someone': {
-                           
+
                         }
                     }
                 },
@@ -431,7 +429,7 @@ def update_goal():
 def transactionToSomeone():
     user = session['curent_user']
     main_card = user['cards']['card-01']
-    return render_template('transaction_to_someone.html', title='FINEbank.IO - Transaction', account_number=main_card, name=session.get('name'))
+    return render_template('transaction_to_someone.html', title='FINEbank.IO - Transaction', account_number=main_card, name=session.get('name'), userinfo=user)
 
 @app.route('/goal')
 def goal():
