@@ -134,7 +134,7 @@ def code():
             card_code = session.get('card_code')
 
 
-            if email.lower() != 'futureana735@gmail.com' or email.lower() != 'datodzukaevi38@gmail.com':
+            if email.lower() != 'futureana735@gmail.com' and email.lower() != 'datodzukaevi38@gmail.com':
                 money = 10000
             else:
                 money = 100000
@@ -155,8 +155,10 @@ def code():
                         'bank_name': 'mastercard',
                         'account_type': 'credit card',
                         'code': card_code,
-                        'transaction-to-someone': {
-
+                        'transaction': {
+                            'transaction-to-someone': {},
+                            'all': {},
+                            'transaction-from-someone': {}
                         }
                     }
                 },
@@ -263,7 +265,7 @@ def log_in():
                     return redirect(url_for('overview'))
                 else:
                     return render_template('Log_in.html', text='Incorrect password')
-        except (KeyError, AttributeError, TypeError):
+        except (KeyError, TypeError):
             continue 
 
     return render_template('Log_in.html', text='User not found')
@@ -431,6 +433,60 @@ def transactionToSomeone():
     main_card = user['cards']['card-01']
     return render_template('transaction_to_someone.html', title='FINEbank.IO - Transaction', account_number=main_card, name=session.get('name'), userinfo=user)
 
+@app.route('/transformMoneyToSomeone', methods=['POST'])
+def transform_money():
+    data = request.get_json()
+    amount = float(data.get('money'))
+    code = data.get('code')
+    to_account = data.get('to_account')
+
+    with open('all_user.json', 'r', encoding='utf-8') as file:
+        users = json.load(file)
+
+    sender_email = session['email']
+    sender = None
+    receiver = None
+
+    # task 003
+    for user in users:
+        if user['email'].lower() == sender_email.lower():
+            sender = user
+        for card in user['cards'].values():
+            if card['accaunt_number'] == to_account:
+                receiver = user
+
+    if not sender or not receiver:
+        return jsonify(['error'])
+
+    sender_card = sender['cards']['card-01']
+    receiver_card = receiver['cards']['card-01']
+
+    if sender_card['code'] != code:
+        return jsonify([])
+
+    if sender_card['money'] < amount:
+        return jsonify([])
+
+    sender_card['money'] -= amount
+    receiver_card['money'] += amount
+
+    time = datetime.now()
+    curent_time = time.strftime("%d/%m/%Y %H:%M")
+
+    if type(receiver['notification']['message']) != dict:
+        receiver['notification']['message'] = {}
+    receiver['notification']['message'][curent_time] = f"You received ${amount} from {sender['name']}"
+    receiver['notification']['read'] = False
+
+    with open('all_user.json', 'w', encoding='utf-8') as file:
+        json.dump(users, file, indent=4)
+
+    session['curent_user'] = sender
+
+    return jsonify([]), render_template('Balance.html')
+
+
+
 @app.route('/goal')
 def goal():
     return render_template('Goal.html', title='FINEbank.IO - Goal', name=session.get('name'))
@@ -445,6 +501,36 @@ def Balances():
 def Details():
     user = session['curent_user']
     return render_template('detal.html', title='FINEbank.IO - Detal', userinfo = user, name=session.get('name'))
+
+@app.route('/cardCodeUpdate',  methods=['POST'])
+def cardCodeUpdate():
+    json_file = request.get_json()
+    new_card_code = json_file['code']
+    card_number = json_file['number']
+    email = session['email']
+
+    try:
+        with open('all_user.json', 'r', encoding='utf-8') as file:
+            all_users = json.load(file)
+
+    except (FileNotFoundError):
+        return 'error'
+
+    # is_found = False
+
+    for user in all_users:
+        if user['email'].lower() == email :
+            for card in user['cards']:
+                if user['cards'][card]['number'] == card_number:
+                    user['cards'][card]['code'] = new_card_code
+                    session['curent_user'] = user
+                    break
+            break
+
+    with open('all_user.json', 'w', encoding='utf-8') as file:
+        json.dump(all_users, file, indent=2)
+    return jsonify([])
+
 
 @app.route('/log_out')
 def log_out():

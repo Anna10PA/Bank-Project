@@ -281,16 +281,17 @@ header .fa-bell {
 /* cardebis gastilva */
 .main {
     padding: 20px 32px 20px 24px;
-    height:100%
+    height: 100%
 }
 
 .main h1 {
     color: #878787;
-    font-weight:400;
-    font-size:22px
+    font-weight: 400;
+    font-size: 22px
 }
+
 ::-webkit-scrollbar {
-    width:0
+    width: 0
 }
 
 .section {
@@ -300,22 +301,22 @@ header .fa-bell {
     gap: 24px;
     height: min-content;
     grid-template-rows: min-content;
-    margin-top:15px;
+    margin-top: 15px;
     background-color: white;
-    padding:24px;
-    height:100%
+    padding: 24px;
+    height: 100%
 }
 
 .section p {
     color: #525256;
-    font-size:18px;
-    font-weight:600
+    font-size: 18px;
+    font-weight: 600
 }
 
 .info {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    gap:5px;
+    gap: 5px;
     align-items: start;
 }
 
@@ -474,15 +475,91 @@ header .fa-bell {
 }
 
 /*  */
-.container {
-    padding: 24px 0
-}
-.container span{
+
+.container span {
     color: #9F9F9F;
-    font-size:16px;
+    font-size: 16px;
     letter-spacing: 1px;
 }
 
 .container p {
     color: #525256
+}
+
+.container button {
+    padding: 10px 25px;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    border: none;
+    background-color: var(--blue);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.container button:hover {
+    background-color: #1f7169;
+}
+
+.container a {
+    color: grey;
+    text-decoration: none;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    grid-column-start: 1;
+}
+
+.section {
+    padding: 30px;
+}
+
+.version02 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section nav {
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(235, 235, 235)
+}
+
+.section nav ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    font-size: 1.2rem;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    letter-spacing: 1.2px;
+}
+
+.story {
+    list-style-type: none;
+    display: flex;
+    width:100%;
+    flex-direction: column;
+}
+
+.story li {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    color: grey;
+    font-size:1rem;
+    font-weight:500;
+    letter-spacing: 1.5px;
+}
+
+.type01 {
+    margin-top:30px
 }

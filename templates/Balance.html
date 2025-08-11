@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% if title %}
+        <title>{{ title }}</title>
+    {% endif %}
     <link rel="stylesheet" href="../static/Balance/style.css">
     <script src="https://kit.fontawesome.com/b2005d7310.js" crossorigin="anonymous"></script>
 
@@ -109,8 +111,8 @@
                     <div class="div01">
                         <p>Credit card</p>
                         <div class="pict">
-                            <span>{{ userinfo.cards['card-01'].type }}</span>
-                            {% if userinfo.cards['card-01'].type == 'mastercard' %}
+                            <span>{{ userinfo.cards['card-01'].bank_name }}</span>
+                            {% if userinfo.cards['card-01'].bank_name == 'mastercard' %}
                             <img src="../static/image/Mastercard-Logo 1.png" alt="">
                             {% endif %}
                         </div>

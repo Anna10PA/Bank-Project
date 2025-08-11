@@ -5,26 +5,31 @@
         "password": "FINEbank.IO",
         "cards": {
             "card-01": {
-                "number": "8554 4687 6386 8553",
-                "accaunt_number": "GE02IO0000000367994995",
-                "money": 100000,
+                "number": "3574 3635 4042 0545",
+                "accaunt_number": "GE92IO0000000034691554",
+                "money": 101000.0,
                 "bank_name": "mastercard",
                 "account_type": "credit card",
-                "code": "6539",
-                "transaction-to-someone": {}
+                "code": "7891",
+                "transaction": {
+                    "transaction-to-someone": {},
+                    "all": {},
+                    "transaction-from-someone": {}
+                }
             }
         },
         "profile": "https://cdn-icons-png.flaticon.com/512/219/219983.png",
         "goal": {
-            "target": 20000,
-            "curent": 10000
+            "target": 300000,
+            "curent": 100000
         },
         "notification": {
-            "read": false,
+            "read": true,
             "message": {
-                "10/08/2025": [
+                "11/08/2025": [
                     "Congratulations! You've received $100000 from the FINEbank.IO for signing up!"
-                ]
+                ],
+                "11/08/2025 18:53": "You received $1000.0 from lamara"
             }
         },
         "transactions": {
@@ -32,7 +37,7 @@
                 "FINEbank.IO": {
                     "send_money": 100000,
                     "reason": "registration",
-                    "date": "10/08/2025"
+                    "date": "11/08/2025"
                 }
             },
             "expenses": {},
@@ -40,7 +45,7 @@
                 "FINEbank.IO": {
                     "send_money": 100000,
                     "reason": "registration",
-                    "date": "10/08/2025"
+                    "date": "11/08/2025"
                 }
             }
         },
@@ -59,6 +64,73 @@
                 "saves": 0,
                 "salary": 0,
                 "other": 100000
+            }
+        }
+    },
+    {
+        "name": "lamara",
+        "email": "puturidzeana0210@gmail.com",
+        "password": "123456789",
+        "cards": {
+            "card-01": {
+                "number": "1098 5143 2840 5391",
+                "accaunt_number": "GE30IO0000000927405048",
+                "money": 9000.0,
+                "bank_name": "mastercard",
+                "account_type": "credit card",
+                "code": "6806",
+                "transaction": {
+                    "transaction-to-someone": {},
+                    "all": {},
+                    "transaction-from-someone": {}
+                }
+            }
+        },
+        "profile": "https://cdn-icons-png.flaticon.com/512/219/219983.png",
+        "goal": {
+            "target": 30000,
+            "curent": 10000
+        },
+        "notification": {
+            "read": true,
+            "message": {
+                "11/08/2025": [
+                    "Congratulations! You've received $10000 from the FINEbank.IO for signing up!"
+                ]
+            }
+        },
+        "transactions": {
+            "revenue": {
+                "FINEbank.IO": {
+                    "send_money": 10000,
+                    "reason": "registration",
+                    "date": "11/08/2025"
+                }
+            },
+            "expenses": {},
+            "all": {
+                "FINEbank.IO": {
+                    "send_money": 10000,
+                    "reason": "registration",
+                    "date": "11/08/2025"
+                }
+            }
+        },
+        "expenses_breakdown": {
+            "08/2025": {
+                "house": 0,
+                "food": 0,
+                "transportation": 0,
+                "entertainment": 0,
+                "shopping": 0,
+                "others": 0
+            }
+        },
+        "revenue_breakdown": {
+            "08/2025": {
+                "saves": 0,
+                "salary": 0,
+                "other": 10000
             }
         }
     }

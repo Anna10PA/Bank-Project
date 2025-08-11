@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% if title %}
+        <title>{{ title }}</title>
+    {% endif %}
+    
     <link rel="stylesheet" href="../static/detal/style.css">
     <script src="https://kit.fontawesome.com/b2005d7310.js" crossorigin="anonymous"></script>
 
@@ -115,10 +118,6 @@
                         <p></p>
                     </div>
                     <div class="info">
-                        <span>Bank Name</span>
-                        <p></p>
-                    </div>
-                    <div class="info">
                         <span>Balances</span>
                         <p></p>
                     </div>
@@ -130,14 +129,35 @@
                         <span>Account Number</span>
                         <p></p>
                     </div>
+                    <div class="info">
+                        <span>Account</span>
+                        <p></p>
+                    </div>
+                    <div class="info">
+                        <span>Code</span>
+                        <p id="code"></p>
+                    </div>
                     <div class="btn">
-                        <button>Edit Details</button>
+                        <button class="edit">Edit Details</button>
                         <a href="#">Remove</a>
                     </div>
+                    <p id="message"></p>
                 </div>
             </div>
-            <div class="container">
+            <div class="container type01">
                 <h1>Transactions History</h1>
+                <div class="section version02">
+                    <nav>
+                        <ul>
+                            <li>Date</li>
+                            <li>Status</li>
+                            <li>Amount</li>
+                        </ul>
+                    </nav>
+                    <ul class="story">
+
+                    </ul>
+                </div>
             </div>
         </section>
     </main>

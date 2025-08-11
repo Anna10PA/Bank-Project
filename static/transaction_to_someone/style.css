@@ -284,7 +284,14 @@ header .fa-bell {
 }
 
 /* cardebis gastilva */
+#transaction-div label {
+    color:#299D91
+}
 
+.reason {
+    display:flex;
+    flex-direction: column;
+}
 #transaction-div {
     padding-top: 100px;
     max-width: 500px;

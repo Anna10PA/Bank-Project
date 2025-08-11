@@ -83,7 +83,7 @@ save.addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch('/update_goal', {
+        let response = await fetch('/update_goal', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
@@ -94,10 +94,14 @@ save.addEventListener('click', async () => {
             alert('Failed to update goal on server.')
         }
 
-        let data = await response.json()
+        // let data = await response.json()
 
-        for (let i of target) i.textContent = targetMoney
-        for (let i of curentM) i.textContent = curentMoney
+        for (let i of target) {
+            i.textContent = targetMoney
+        }
+        for (let i of curentM) {
+            i.textContent = curentMoney
+        }
 
         function formatMoney(amount) {
             const units = ['', 'K', 'M', 'B', 'T']

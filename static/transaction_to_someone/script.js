@@ -32,7 +32,10 @@ Send.addEventListener('click', async () => {
             accountInput.style.border = '1px solid #f00'
             accountInput.style.color = 'black'
             accountInput.disabled = true
+
         }
+    }else {
+        transformMoney()
     }
 })
 
@@ -118,3 +121,34 @@ Alarm.addEventListener('click', () => {
 })
 
 renderNotifications()
+
+// transform money 
+async function transformMoney() {
+    let moneyValue = document.querySelector('#price')
+    messageP.textContent = ''
+    let url = await fetch('/curent_user')
+    let user = await url.json()
+
+    if (moneyValue.value <= 0 || moneyValue.value > user['cards']['card-01'].money) {
+        messageP.textContent = 'Enter normal money'
+    } else {
+        if (user['cards']['card-01'].code == code.value) {
+            await fetch('/transformMoneyToSomeone', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    money: moneyValue.value,
+                    code: code.value,
+                    to_account: document.querySelector('#account').value
+                })
+            })
+            messageP.textContent = 'Success!'
+            messageP.style.color = 'green'
+        } else {
+            messageP.textContent = 'Card Code is not corect'
+            messageP.style.color = 'red'
+        }
+    }
+}

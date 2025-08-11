@@ -21,7 +21,7 @@
                 <ul>
                     <a href="/overview">
                         <li class="curent-page">
-                            <img src="../static/image/Overview.png" alt=""> 
+                            <img src="../static/image/Overview.png" alt="">
                             Overview
                         </li>
                     </a>
@@ -111,14 +111,18 @@
                     <p><span>Account: </span> {{ account_number['accaunt_number'] }} </p>
                     <p><span>Curent money: </span> ${{ account_number['money'] }}</p>
                     <div class="send">
-                        <label for=""><span>Transform: </span></label><br>
-                        <input type="number" min="0">$
+                        <label for="price"><span>Transform: </span></label><br>
+                        <input type="number" min="0" id="price" required>$
                     </div>
                     <div class="card-code">
                         <label for="code">
                             <span>Code:</span>
                         </label><br>
-                        <input type="number" min="0" minlength="4" required>
+                        <input type="number" min="0" minlength="4" required id="code">
+                    </div>
+                    <div class="reason">
+                        <label for=""><span>Reason</span></label>
+                        <input type="text" required value="Personal">
                     </div>
                 </div>
                 <div class="to div">

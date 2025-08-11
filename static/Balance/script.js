@@ -3,7 +3,7 @@ let curentData = new Date()
 let listCurentDate = String(curentData).split(' ')
 let date = document.querySelector('.section01').querySelector('span')
 date.textContent = `>> ${listCurentDate[1]} ${listCurentDate[2]}, ${listCurentDate[3]}`
-
+let choosen = JSON.parse(localStorage.getItem('number')) || ''
 
 // open/close
 let menuBar = document.querySelector('#fa-bars')
@@ -67,12 +67,19 @@ Alarm.addEventListener('click', () => {
             body: JSON.stringify({ read: true })
         })
 
-        renderNotifications() 
+        renderNotifications()
 
     } else {
         transactionDiv.style.transform = 'translateY(-500px)'
         transactionDiv.style.zIndex = '-3'
         transactionDiv.style.opacity = '0'
+    }
+})
+
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON' && e.target.classList.contains('Details')) {
+        choosen = e.target.closest('.card').querySelectorAll('span')[1].textContent.trim()
+        localStorage.setItem('number', JSON.stringify(choosen))
     }
 })
 
